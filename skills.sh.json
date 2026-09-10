@@ -1,0 +1,17 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Release & Documentation Workflow",
+      "description": "Commit messages, changelogs, version numbers, architecture decisions, and documentation structure.",
+      "skills": [
+        "adr",
+        "conventionalcommits",
+        "docs",
+        "keepachangelog",
+        "mkdocs",
+        "semver"
+      ]
+    }
+  ]
+}

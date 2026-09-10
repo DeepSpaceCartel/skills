@@ -1,0 +1,34 @@
+# DeepSpaceCartel Skills
+
+A small pack of project-agnostic [Agent Skills](https://agentskills.io/) for
+the release and documentation workflow: writing commits, changelogs,
+version numbers, architecture decision records, and documentation sites.
+None of these are specific to any one codebase — they document public
+standards and can be dropped into any project.
+
+## Install
+
+```
+npx skills add DeepSpaceCartel/skills
+```
+
+Or install a single skill, e.g.:
+
+```
+npx skills add DeepSpaceCartel/skills/skills/semver
+```
+
+## Skills
+
+| Skill | What it covers |
+| --- | --- |
+| [`adr`](skills/adr/SKILL.md) | Writing and maintaining Architecture Decision Records ([adr.github.io](https://adr.github.io/)) |
+| [`conventionalcommits`](skills/conventionalcommits/SKILL.md) | Conventional Commits v1.0.0 message format ([conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)) |
+| [`docs`](skills/docs/SKILL.md) | The Divio documentation system — tutorials, how-to guides, reference, explanation ([docs.divio.com](https://docs.divio.com/documentation-system/)) |
+| [`keepachangelog`](skills/keepachangelog/SKILL.md) | Writing a `CHANGELOG.md` in the Keep a Changelog 1.1.0 format ([keepachangelog.com](https://keepachangelog.com/en/1.1.0/)) |
+| [`mkdocs`](skills/mkdocs/SKILL.md) | Building a documentation site with MkDocs + Material for MkDocs |
+| [`semver`](skills/semver/SKILL.md) | Semantic Versioning 2.0.0 rules ([semver.org](https://semver.org/)) |
+
+## License
+
+MIT, see [LICENSE](LICENSE).
