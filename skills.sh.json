@@ -12,6 +12,13 @@
         "mkdocs",
         "semver"
       ]
+    },
+    {
+      "title": "API Design",
+      "description": "Structuring REST API requests and responses.",
+      "skills": [
+        "jsonapi"
+      ]
     }
   ]
 }
