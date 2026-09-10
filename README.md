@@ -29,6 +29,7 @@ npx skills add DeepSpaceCartel/skills/skills/semver
 | [`keepachangelog`](skills/keepachangelog/SKILL.md) | Writing a `CHANGELOG.md` in the Keep a Changelog 1.1.0 format ([keepachangelog.com](https://keepachangelog.com/en/1.1.0/)) |
 | [`mkdocs`](skills/mkdocs/SKILL.md) | Building a documentation site with MkDocs + Material for MkDocs |
 | [`semver`](skills/semver/SKILL.md) | Semantic Versioning 2.0.0 rules ([semver.org](https://semver.org/)) |
+| [`skill`](skills/skill/SKILL.md) | Writing, structuring, and reviewing Agent Skills — the `SKILL.md` format itself ([agentskills.io](https://agentskills.io/)) |
 
 ## License
 
