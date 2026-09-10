@@ -19,6 +19,13 @@
       "skills": [
         "jsonapi"
       ]
+    },
+    {
+      "title": "Agent Tooling",
+      "description": "Building and structuring capabilities for AI agents.",
+      "skills": [
+        "skill"
+      ]
     }
   ]
 }
