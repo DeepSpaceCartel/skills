@@ -3,19 +3,19 @@
 ## Every example is real, or it's a liability
 
 An invented code snippet is a promise the docs make on the system's
-behalf, unverified. It drifts the moment the real API changes, and
+behalf, unverified. It drifts the moment the API changes, and
 nothing forces anyone to notice. Prefer embedding an actual example from
-the real codebase — a real config file, a real test scenario, a real
+the codebase — a config file, a test scenario, a
 CLI transcript — over writing one from scratch for the docs. When you
 do embed one:
 
 - **Quote it verbatim**, don't "clean it up for readability." A reader
   who copies it should get something that actually works.
-- **Name the real source** ("this is the complete, real
+- **Name the source** ("this is the complete
   `tests/quickstart_test.py` — nothing here is trimmed for the docs")
   so a skeptical reader can go verify it themselves, and so a future
-  editor knows there's a real file to keep in sync.
-- When the real example changes, the doc's embedded copy has to change
+  editor knows there's a file to keep in sync.
+- When the source example changes, the doc's embedded copy has to change
   with it in the same edit — this doesn't happen automatically, so flag
   it as a linked pair when you first create the embed (a comment in the
   source file pointing at the doc section that quotes it is cheap
@@ -42,22 +42,22 @@ an internal implementation vocabulary for the same idea, decide
 explicitly which one prose uses and hold the line consistently; don't
 let the two bleed into each other page by page.
 
-## Write the quick start as if the reader already has a real thing to test
+## Write the quick start as if the reader already has something to test
 
 The strongest quick start isn't "install the tool, run `--help`" — it's
-"here's the exact, complete, real flow for the most common real task,
+"here's the exact, complete flow for the most common task,
 narrated as if you already had a system of your own to point it at."
-Concretely: frame it in first person around a plausible real scenario
+Concretely: frame it in first person around a plausible scenario
 ("say you just built X and want to prove it works"), use one of the
-project's own real fixtures as the stand-in for the reader's system, and
-show the *complete* real artifact (the whole config file, the whole test
+project's own fixtures as the stand-in for the reader's system, and
+show the *complete* artifact (the whole config file, the whole test
 scenario) rather than an abbreviated fragment — trimming "for
 simplicity" is exactly where invented-example drift starts.
 
-## Don't hide navigation or table-of-contents without a real reason
+## Don't hide navigation or table-of-contents without a good reason
 
 Per-page front matter that hides the sidebar/TOC (`hide: navigation`,
-`hide: toc`) trades a real, persistent cost (every other page on the
+`hide: toc`) trades a persistent cost (every other page on the
 site loses its wayfinding while this one is open) for a cosmetic gain
 that's rarely worth it outside a genuine full-bleed landing page. If a
 page needs it, that's a deliberate design call to make once, not a
@@ -71,7 +71,7 @@ hover-tooltip everywhere it's used on that page — cheaper than either
 spelling it out every time or leaving a reader to guess:
 
 ```markdown
-Real `BDD`-style scenarios exercise the API.
+`BDD`-style scenarios exercise the API.
 
 *[BDD]: Behavior-Driven Development
 ```
