@@ -17,8 +17,11 @@ first and silently leave the pack's own index stale:
 2. **`skills.sh.json`** — add the skill to an existing `groupings[]`
    entry, or add a new grouping if none fits. Validate it's still
    valid JSON after editing.
-3. **`README.md`** — add a row to the skills table, alphabetically by
-   skill name, following the existing `| [`name`](skills/name/SKILL.md) | one-line summary (spec link) |` format.
+3. **`README.md`** — add a row to the matching category's table
+   (README's sections mirror `skills.sh.json`'s `groupings[]` 1:1, in
+   the same order — add a new `###` section if you added a new
+   grouping), alphabetically by skill name within that table, in the
+   existing `| [`name`](skills/name/SKILL.md) | one-line summary (spec link) |` format.
 
 Renaming or removing a skill means updating all three the same way,
 plus checking for cross-skill relative links (e.g.
