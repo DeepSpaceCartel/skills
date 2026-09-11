@@ -48,6 +48,13 @@
       "skills": [
         "skill"
       ]
+    },
+    {
+      "title": "Testing & Behavior Specification",
+      "description": "Writing behavior-driven test specifications and acceptance criteria.",
+      "skills": [
+        "gherkin"
+      ]
     }
   ]
 }
