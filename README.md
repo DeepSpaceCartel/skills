@@ -23,6 +23,7 @@ npx skills add DeepSpaceCartel/skills/skills/semver
 | Skill | What it covers |
 | --- | --- |
 | [`adr`](skills/adr/SKILL.md) | Writing and maintaining Architecture Decision Records ([adr.github.io](https://adr.github.io/)) |
+| [`cloudevents`](skills/cloudevents/SKILL.md) | CloudEvents v1.0 event format — context attributes, JSON format, protocol bindings, extensions ([cloudevents.io](https://cloudevents.io/)) |
 | [`conventionalcommits`](skills/conventionalcommits/SKILL.md) | Conventional Commits v1.0.0 message format ([conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)) |
 | [`docs`](skills/docs/SKILL.md) | The Divio documentation system — tutorials, how-to guides, reference, explanation ([docs.divio.com](https://docs.divio.com/documentation-system/)) |
 | [`jsonapi`](skills/jsonapi/SKILL.md) | JSON:API v1.1 response/request format — resources, relationships, CRUD, errors ([jsonapi.org](https://jsonapi.org/)) |
