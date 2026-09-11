@@ -29,6 +29,13 @@
       ]
     },
     {
+      "title": "Application Security",
+      "description": "Security requirements and verification standards for building and assessing applications.",
+      "skills": [
+        "owasp-asvs"
+      ]
+    },
+    {
       "title": "Agent Tooling",
       "description": "Building and structuring capabilities for AI agents.",
       "skills": [
