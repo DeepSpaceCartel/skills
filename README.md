@@ -26,6 +26,7 @@ npx skills add DeepSpaceCartel/skills/skills/semver
 | [`cloudevents`](skills/cloudevents/SKILL.md) | CloudEvents v1.0 event format — context attributes, JSON format, protocol bindings, extensions ([cloudevents.io](https://cloudevents.io/)) |
 | [`conventionalcommits`](skills/conventionalcommits/SKILL.md) | Conventional Commits v1.0.0 message format ([conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)) |
 | [`docs`](skills/docs/SKILL.md) | The Divio documentation system — tutorials, how-to guides, reference, explanation ([docs.divio.com](https://docs.divio.com/documentation-system/)) |
+| [`json-schema`](skills/json-schema/SKILL.md) | JSON Schema 2020-12 — validation keywords, `$ref`/`$dynamicRef`, vocabularies, annotations ([json-schema.org](https://json-schema.org/draft/2020-12)) |
 | [`jsonapi`](skills/jsonapi/SKILL.md) | JSON:API v1.1 response/request format — resources, relationships, CRUD, errors ([jsonapi.org](https://jsonapi.org/)) |
 | [`keepachangelog`](skills/keepachangelog/SKILL.md) | Writing a `CHANGELOG.md` in the Keep a Changelog 1.1.0 format ([keepachangelog.com](https://keepachangelog.com/en/1.1.0/)) |
 | [`mkdocs`](skills/mkdocs/SKILL.md) | Building a documentation site with MkDocs + Material for MkDocs |
