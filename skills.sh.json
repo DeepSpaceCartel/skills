@@ -17,7 +17,8 @@
       "title": "API Design",
       "description": "Structuring REST API requests and responses.",
       "skills": [
-        "jsonapi"
+        "jsonapi",
+        "rfc9457"
       ]
     },
     {
