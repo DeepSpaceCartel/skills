@@ -1,13 +1,13 @@
 ---
 name: jsonapi
-description: How to design and review a real JSON:API v1.1 response/request format (https://jsonapi.org/) - project-agnostic. Covers the application/vnd.api+json document shape (resource objects, relationships, compound documents), the reserved query-parameter families (include, fields, sort, page, filter), CRUD semantics and status codes for creating/updating/deleting resources and relationships, and error objects and content negotiation. Use when designing a REST API's response format, reviewing an endpoint for spec compliance, implementing include/sparse-fieldsets/sorting/pagination/filtering, or writing error responses.
+description: How to design and review a JSON:API v1.1 response/request format (https://jsonapi.org/) - project-agnostic. Covers the application/vnd.api+json document shape (resource objects, relationships, compound documents), the reserved query-parameter families (include, fields, sort, page, filter), CRUD semantics and status codes for creating/updating/deleting resources and relationships, and error objects and content negotiation. Use when designing a REST API's response format, reviewing an endpoint for spec compliance, implementing include/sparse-fieldsets/sorting/pagination/filtering, or writing error responses.
 ---
 
 # JSON:API (v1.1)
 
 How to shape requests and responses so a JSON:API client can rely on
 structure alone — no per-endpoint documentation needed for "where's the
-id" or "how do I ask for related data." The real spec is at
+id" or "how do I ask for related data." The spec is at
 [jsonapi.org/format](https://jsonapi.org/format/).
 
 Every JSON:API payload is served as `application/vnd.api+json`. The
@@ -52,7 +52,7 @@ predictable:
 
 ## Quick orientation
 
-A minimal but real document — one article resource with an attribute
+A minimal document — one article resource with an attribute
 and a to-one relationship, fetched via `GET /articles/1`:
 
 ```json
