@@ -80,6 +80,14 @@ Building and structuring capabilities for AI agents.
 | --- | --- |
 | [`skill`](skills/skill/SKILL.md) | Writing, structuring, and reviewing Agent Skills — the `SKILL.md` format itself ([agentskills.io](https://agentskills.io/)) |
 
+### Development Environments
+
+Configuring reproducible, containerized development environments.
+
+| Skill | What it covers |
+| --- | --- |
+| [`devcontainer`](skills/devcontainer/SKILL.md) | The Development Container Specification — `devcontainer.json`, Features, Templates, image metadata, distribution ([containers.dev](https://containers.dev/)) |
+
 ### Testing & Behavior Specification
 
 Writing behavior-driven test specifications and acceptance criteria.

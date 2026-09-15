@@ -50,6 +50,13 @@
       ]
     },
     {
+      "title": "Development Environments",
+      "description": "Configuring reproducible, containerized development environments.",
+      "skills": [
+        "devcontainer"
+      ]
+    },
+    {
       "title": "Testing & Behavior Specification",
       "description": "Writing behavior-driven test specifications and acceptance criteria.",
       "skills": [
