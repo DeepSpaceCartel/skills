@@ -3,9 +3,10 @@
 A small pack of project-agnostic [Agent Skills](https://agentskills.io/)
 covering public standards and conventions — release & documentation
 workflow, API design, data validation, eventing, application security,
-BDD test specifications, and Agent Skills authoring itself. None of
-these are specific to any one codebase — they document public
-standards and can be dropped into any project.
+development environments, containers & Kubernetes, CI/CD, observability,
+infrastructure as code, BDD test specifications, and Agent Skills
+authoring itself. None of these are specific to any one codebase — they
+document public standards and can be dropped into any project.
 
 ## Install
 
@@ -45,6 +46,7 @@ Structuring REST API requests and responses.
 | Skill | What it covers |
 | --- | --- |
 | [`jsonapi`](skills/jsonapi/SKILL.md) | JSON:API v1.1 response/request format — resources, relationships, CRUD, errors ([jsonapi.org](https://jsonapi.org/)) |
+| [`openapi`](skills/openapi/SKILL.md) | OpenAPI 3.1/3.2 descriptions — paths, schemas, components, security schemes, tags, webhooks ([spec.openapis.org](https://spec.openapis.org/oas/v3.2.0.html)) |
 | [`rfc9457`](skills/rfc9457/SKILL.md) | Problem Details for HTTP APIs error format ([RFC 9457](https://www.rfc-editor.org/info/rfc9457/)) |
 
 ### Data Validation
@@ -87,6 +89,39 @@ Configuring reproducible, containerized development environments.
 | Skill | What it covers |
 | --- | --- |
 | [`devcontainer`](skills/devcontainer/SKILL.md) | The Development Container Specification — `devcontainer.json`, Features, Templates, image metadata, distribution ([containers.dev](https://containers.dev/)) |
+
+### Containers & Kubernetes
+
+Building container images and packaging workloads for Kubernetes.
+
+| Skill | What it covers |
+| --- | --- |
+| [`container-images`](skills/container-images/SKILL.md) | Dockerfiles and image builds — multi-stage, caching, minimal bases, non-root, build secrets, multi-arch ([docs.docker.com](https://docs.docker.com/build/building/best-practices/)) |
+| [`helm-charts`](skills/helm-charts/SKILL.md) | Authoring and reviewing Helm charts — values, helpers, hooks, dependencies, testing, upgrade semantics ([helm.sh](https://helm.sh/docs/chart_best_practices/)) |
+
+### CI/CD
+
+Authoring and hardening continuous integration and delivery workflows.
+
+| Skill | What it covers |
+| --- | --- |
+| [`github-actions`](skills/github-actions/SKILL.md) | GitHub Actions workflows — least-privilege permissions, SHA pinning, fork-PR safety, OIDC, self-hosted runners ([docs.github.com](https://docs.github.com/en/actions)) |
+
+### Observability
+
+Structured logging and telemetry conventions.
+
+| Skill | What it covers |
+| --- | --- |
+| [`structured-logging`](skills/structured-logging/SKILL.md) | Structured logs and trace correlation per OpenTelemetry — the log data model, semantic conventions, cardinality ([opentelemetry.io](https://opentelemetry.io/docs/specs/otel/logs/data-model/)) |
+
+### Infrastructure as Code
+
+Building and publishing Terraform providers.
+
+| Skill | What it covers |
+| --- | --- |
+| [`terraform-provider`](skills/terraform-provider/SKILL.md) | Terraform providers with the Plugin Framework — schema, CRUD, import, acceptance tests, docs, Registry release ([developer.hashicorp.com](https://developer.hashicorp.com/terraform/plugin/framework)) |
 
 ### Testing & Behavior Specification
 
