@@ -146,7 +146,7 @@ Time-tested, source-backed workflows for everyday engineering tasks.
 
 | Skill | What it covers |
 | --- | --- |
-| [`engineering-practices`](skills/engineering-practices/SKILL.md) | Time-tested workflows for everyday engineering tasks — testing, debugging, refactoring, database migrations, reliability, security, API evolution, performance — each with what agents get wrong, a procedure and a checklist, grounded in canonical sources |
+| [`engineering-practices`](skills/engineering-practices/SKILL.md) | Time-tested workflows for everyday engineering tasks — testing, debugging, refactoring, database migrations, reliability, security, API evolution, performance, release engineering — each with what agents get wrong, a procedure and a checklist, grounded in canonical sources |
 
 ## License
 
