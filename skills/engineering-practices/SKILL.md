@@ -1,6 +1,6 @@
 ---
 name: engineering-practices
-description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy component incrementally; changing a database schema or backfilling data. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
+description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy component incrementally; changing a database schema or backfilling data; adding timeouts, retries or idempotency, defining SLOs and alerts, or writing a postmortem. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
 ---
 
 # Engineering Practices
@@ -32,6 +32,7 @@ This skill is about *how to do a task*. For judging whether a design is good
 | Debugging | A bug, crash or failing test to diagnose; an intermittent failure; deciding how to reproduce or isolate | [debugging](references/debugging.md) | Zeller (The Debugging Book), Agans, git bisect docs |
 | Refactoring | Restructuring code without changing behavior; making a change easy first; replacing a legacy component incrementally | [refactoring](references/refactoring.md) | Fowler (refactoring.com), Beck (Tidy First?), Feathers, the Mikado Method |
 | Database migrations | Changing a schema or backfilling data; adding NOT NULL, renaming or dropping a column; indexing a large table | [database-migrations](references/database-migrations.md) | Fowler and Sadalage (evolutionary database design), Stripe, strong_migrations, PostgreSQL docs |
+| Reliability | Timeouts, retries, idempotency and overload; defining SLOs and alerts; writing a postmortem | [reliability](references/reliability.md) | Google SRE book and workbook, AWS Builders' Library, Nygard |
 
 ## Working rules shared by every practice
 
