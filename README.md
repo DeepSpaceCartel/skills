@@ -4,9 +4,10 @@ A small pack of project-agnostic [Agent Skills](https://agentskills.io/)
 covering public standards and conventions — release & documentation
 workflow, API design, data validation, eventing, application security,
 development environments, containers & Kubernetes, CI/CD, observability,
-infrastructure as code, BDD test specifications, and Agent Skills
-authoring itself. None of these are specific to any one codebase — they
-document public standards and can be dropped into any project.
+infrastructure as code, BDD test specifications, core software design
+principles, and Agent Skills authoring itself. None of these are specific
+to any one codebase — they document public standards and well-established
+practice, and can be dropped into any project.
 
 ## Install
 
@@ -130,6 +131,14 @@ Writing behavior-driven test specifications and acceptance criteria.
 | Skill | What it covers |
 | --- | --- |
 | [`gherkin`](skills/gherkin/SKILL.md) | Writing clear, maintainable Gherkin `.feature` files for BDD — declarative style, Background/Scenario Outline usage, tags |
+
+### Software Design Principles
+
+Core, language-agnostic design principles for writing and reviewing code.
+
+| Skill | What it covers |
+| --- | --- |
+| [`core-principles`](skills/core-principles/SKILL.md) | Sixteen design principles — KISS, DRY, YAGNI, Separation of Concerns, SRP, High Cohesion, Low Coupling, Composition over Inheritance, Information Hiding, Encapsulation, Program to an Interface, Fail Fast, Explicitness, Least Surprise, Least Privilege, Defensive Programming — with a symptom-to-principle lookup, conflict tie-breakers, and a reference per principle |
 
 ## License
 
