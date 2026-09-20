@@ -1,6 +1,6 @@
 ---
 name: engineering-practices
-description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy component incrementally; changing a database schema or backfilling data; adding timeouts, retries or idempotency, defining SLOs and alerts, or writing a postmortem; adding a dependency, handling a secret or leaked credential, or threat-modeling a feature; changing a published API, event or schema without breaking consumers. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
+description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy component incrementally; changing a database schema or backfilling data; adding timeouts, retries or idempotency, defining SLOs and alerts, or writing a postmortem; adding a dependency, handling a secret or leaked credential, or threat-modeling a feature; changing a published API, event or schema without breaking consumers; investigating slowness, benchmarking, or deciding whether to add a cache. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
 ---
 
 # Engineering Practices
@@ -35,6 +35,7 @@ This skill is about *how to do a task*. For judging whether a design is good
 | Reliability | Timeouts, retries, idempotency and overload; defining SLOs and alerts; writing a postmortem | [reliability](references/reliability.md) | Google SRE book and workbook, AWS Builders' Library, Nygard |
 | Security | Adding a dependency; handling a secret or a leaked credential; threat-modeling a new feature | [security-practices](references/security-practices.md) | OWASP cheat sheets, Threat Modeling Manifesto, SLSA, OpenSSF Scorecard |
 | API evolution | Changing a published API, event or schema (rename, remove, new default, enum); deprecation; what counts as breaking | [api-evolution](references/api-evolution.md) | Google AIPs, Stripe, Hyrum's Law, Pact, Fowler (consumer-driven contracts) |
+| Performance | Something is slow; before optimizing; benchmarking; whether to add a cache | [performance](references/performance.md) | Gregg, Google SRE book, Knuth (1974), Tene |
 
 ## Working rules shared by every practice
 
