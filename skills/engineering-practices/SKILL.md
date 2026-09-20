@@ -1,6 +1,6 @@
 ---
 name: engineering-practices
-description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when restructuring code or replacing a legacy component incrementally. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
+description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; restructuring code or replacing a legacy component incrementally. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
 ---
 
 # Engineering Practices
@@ -28,6 +28,7 @@ This skill is about *how to do a task*. For judging whether a design is good
 
 | Practice | Read when | Reference | Anchor sources |
 |---|---|---|---|
+| Testing | Writing or reviewing tests; choosing unit vs integration; mocks vs fakes; flaky tests; legacy code with no tests | [testing](references/testing.md) | Fowler's bliki, Beck (Test Desiderata), Google Testing Blog, Feathers |
 | Refactoring | Restructuring code without changing behavior; making a change easy first; replacing a legacy component incrementally | [refactoring](references/refactoring.md) | Fowler (refactoring.com), Beck (Tidy First?), Feathers, the Mikado Method |
 
 ## Working rules shared by every practice
