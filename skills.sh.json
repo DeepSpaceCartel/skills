@@ -92,6 +92,13 @@
       "skills": [
         "gherkin"
       ]
+    },
+    {
+      "title": "Software Design Principles",
+      "description": "Core, language-agnostic design principles for writing and reviewing code, with a symptom-to-principle guide and a reference per principle.",
+      "skills": [
+        "core-principles"
+      ]
     }
   ]
 }
