@@ -1,0 +1,50 @@
+---
+name: engineering-practices
+description: Time-tested engineering practices for everyday delivery work - project-agnostic: workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when restructuring code or replacing a legacy component incrementally. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
+---
+
+# Engineering Practices
+
+Workflows for everyday engineering tasks, each based on long-standing sources
+(Fowler, Beck, Google's SRE books, DORA research, OWASP) rather than new ideas.
+Each reference leads with what coding agents typically get wrong, then gives a
+procedure, techniques, a worked example and a review checklist.
+
+This skill is about *how to do a task*. For judging whether a design is good
+(simplicity, coupling, cohesion, failure handling, privilege), use
+[`core-principles`](../core-principles/SKILL.md).
+
+## How to use this skill
+
+1. Match the task to a row below and read that one reference, then follow its
+   procedure. Don't load them all.
+2. Practices compose. A risky schema change needs `database-migrations` and
+   `release-engineering`. A refactor of untested code needs the safety-net
+   steps first. Read a second reference only when the task crosses into it.
+3. Each reference names related practices under **Related**; open one
+   (`references/<name>.md`) only when the situation calls for it.
+
+## The catalog
+
+| Practice | Read when | Reference | Anchor sources |
+|---|---|---|---|
+| Refactoring | Restructuring code without changing behavior; making a change easy first; replacing a legacy component incrementally | [refactoring](references/refactoring.md) | Fowler (refactoring.com), Beck (Tidy First?), Feathers, the Mikado Method |
+
+## Working rules shared by every practice
+
+These recur across the references (a synthesis, not a separate source):
+
+1. **Verify, don't assume.** Run the tests, commands or measurements and read the
+   output before saying something works, is faster, or is safe. Say plainly what
+   you did not verify.
+2. **Get a safety net first:** a failing test that reproduces the bug, a baseline
+   measurement, a characterization test, or a rollback plan.
+3. **Small, reversible steps.** One kind of change per commit or deploy:
+   structure vs behavior, schema expand vs contract, flag off vs on.
+4. **Change one thing at a time** and observe the result before the next change.
+5. **Prefer the additive path** when others depend on what you're changing.
+
+## Related
+
+- [`core-principles`](../core-principles/SKILL.md) — design heuristics and how they conflict.
+- [`github-actions`](../github-actions/SKILL.md), [`semver`](../semver/SKILL.md), [`keepachangelog`](../keepachangelog/SKILL.md), [`owasp-asvs`](../owasp-asvs/SKILL.md) — the mechanics and requirements these practices plug into.

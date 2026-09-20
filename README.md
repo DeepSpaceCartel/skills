@@ -140,6 +140,14 @@ Core, language-agnostic design principles for writing and reviewing code.
 | --- | --- |
 | [`core-principles`](skills/core-principles/SKILL.md) | Sixteen design principles — KISS, DRY, YAGNI, Separation of Concerns, SRP, High Cohesion, Low Coupling, Composition over Inheritance, Information Hiding, Encapsulation, Program to an Interface, Fail Fast, Explicitness, Least Surprise, Least Privilege, Defensive Programming — with a symptom-to-principle lookup, conflict tie-breakers, and a reference per principle |
 
+### Engineering Practices
+
+Time-tested, source-backed workflows for everyday engineering tasks.
+
+| Skill | What it covers |
+| --- | --- |
+| [`engineering-practices`](skills/engineering-practices/SKILL.md) | Time-tested workflows for everyday engineering tasks — refactoring — each with what agents get wrong, a procedure and a checklist, grounded in canonical sources |
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
