@@ -99,6 +99,13 @@
       "skills": [
         "core-principles"
       ]
+    },
+    {
+      "title": "Engineering Practices",
+      "description": "Time-tested, source-backed workflows for everyday engineering tasks.",
+      "skills": [
+        "engineering-practices"
+      ]
     }
   ]
 }
