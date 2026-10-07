@@ -89,7 +89,7 @@ Configuring reproducible, containerized development environments.
 
 | Skill | What it covers |
 | --- | --- |
-| [`devcontainer`](skills/devcontainer/SKILL.md) | The Development Container Specification — `devcontainer.json`, Features, Templates, image metadata, distribution ([containers.dev](https://containers.dev/)) |
+| [`devcontainer`](skills/devcontainer/SKILL.md) | The Development Container Specification — `devcontainer.json`, Features (choosing trusted ones, authoring, testing), Templates, image metadata, distribution ([containers.dev](https://containers.dev/)) |
 
 ### Containers & Kubernetes
 
