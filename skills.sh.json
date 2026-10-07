@@ -67,8 +67,9 @@
     },
     {
       "title": "CI/CD",
-      "description": "Authoring and hardening continuous integration and delivery workflows.",
+      "description": "Authoring and hardening continuous integration and delivery workflows, and automating dependency updates.",
       "skills": [
+        "dependabot",
         "github-actions"
       ]
     },
