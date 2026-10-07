@@ -102,10 +102,11 @@ Building container images and packaging workloads for Kubernetes.
 
 ### CI/CD
 
-Authoring and hardening continuous integration and delivery workflows.
+Authoring and hardening continuous integration and delivery workflows, and automating dependency updates.
 
 | Skill | What it covers |
 | --- | --- |
+| [`dependabot`](skills/dependabot/SKILL.md) | Dependabot `dependabot.yml` — ecosystems, grouping, cooldown, security vs version updates, private registries, safe auto-merge ([docs.github.com](https://docs.github.com/en/code-security/dependabot)) |
 | [`github-actions`](skills/github-actions/SKILL.md) | GitHub Actions workflows — least-privilege permissions, SHA pinning, fork-PR safety, OIDC, self-hosted runners ([docs.github.com](https://docs.github.com/en/actions)) |
 
 ### Observability
