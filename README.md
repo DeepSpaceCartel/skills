@@ -5,7 +5,9 @@ covering public standards and conventions — release & documentation
 workflow, API design, data validation, eventing, application security,
 development environments, containers & Kubernetes, CI/CD, observability,
 infrastructure as code, BDD test specifications, core software design
-principles, and Agent Skills authoring itself. None of these are specific
+principles, production engineering (data safety, pipelines, capacity,
+architecture review, infrastructure patterns, operations, builds), and
+Agent Skills authoring itself. None of these are specific
 to any one codebase — they document public standards and well-established
 practice, and can be dropped into any project.
 
