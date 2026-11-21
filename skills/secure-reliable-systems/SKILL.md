@@ -124,7 +124,7 @@ tracked.
    rather than looking it up, apply exactly one policy per deployment.
 5. Keep a break-glass bypass, alarmed and audited, and log enough to re-check deployments later.
 
-Build mechanics belong to `build-systems`, [`container-images`](../container-images/SKILL.md) and
+Build mechanics belong to [`build-systems`](../build-systems/SKILL.md), [`container-images`](../container-images/SKILL.md) and
 [`github-actions`](../github-actions/SKILL.md); dependency pinning to `engineering-practices`.
 
 ## Working rules
