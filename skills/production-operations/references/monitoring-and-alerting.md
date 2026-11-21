@@ -71,13 +71,14 @@ paging criteria:
 | Is it already covered by an alert that is firing or will fire? | suppress it | keep asking |
 | Must someone act within the next hour? | **page** | **ticket** (business hours) |
 
-**White-box and black-box together.** White-box (exported metrics, logs) sees causes and problems
-masked by retries. Black-box sees what users see, including failures that never reach the server:
+**White-box and black-box together.** White-box (exported metrics, logs) sees causes, and failures
+that retries hide from the caller. Black-box sees what users see, including failures that never reach the server:
 DNS, TLS, a load balancer with no healthy backends. Probe both the public entry point and the
 backends behind it, so the alert says where the break is.
 
-**Symptoms page, causes explain.** Put cause metrics on the dashboard the page links to. One
-team's symptom is another's cause: slow database reads page the database owner, not every caller.
+**Symptoms page, causes explain.** Put cause metrics on the dashboard the page links to. Whether a
+signal is a symptom depends on whose service it is: a storage team pages on its own slow queries,
+while the web tier in front only shows them on its dashboard.
 Page on latency at one layer of a stack, as high as possible (Prometheus).
 
 **The deadline inventory.** Cause-side checks that must exist whatever the SLO says. Each is a
@@ -104,8 +105,8 @@ left, current deploy and config versions, and each dependency's signals. The Wor
 versions and flags on the dashboard, because "what changed?" is the first question in an
 incident. Add panels when a postmortem shows a missing one.
 
-**Resolution and retention.** Scrape fast enough for the SLO (once or twice a minute is enough for
-99.9% availability); keep months of data for trends. Keep labels low-cardinality; per-entity IDs
+**Resolution and retention.** Scrape fast enough for the SLO (a probe every 30-60 s is plenty for a
+99.9% target); keep months of data for trends. Keep labels low-cardinality; per-entity IDs
 belong in logs, not metric labels.
 
 **Alertmanager hygiene.** Group by `alertname` and service so one outage is one notification;

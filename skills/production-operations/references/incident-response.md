@@ -12,7 +12,8 @@ Anchor sources: the SRE book's [Managing Incidents](https://sre.google/sre-book/
 
 ## What agents typically get wrong
 
-- **Debugging instead of mitigating.** Users want the errors to stop. A rollback, a drain or
+- **Debugging instead of mitigating.** Users judge you by when the failures end, not by whether
+  you know why. A rollback, a drain or
   turning a flag off usually works before anyone understands the bug.
 - **Nobody in charge.** Several people (or agents) each investigate, each change something, and
   nobody knows the current state. The SRE book calls the uncoordinated changes "freelancing".
@@ -20,7 +21,7 @@ Anchor sources: the SRE book's [Managing Incidents](https://sre.google/sre-book/
   and the postmortem has no timeline.
 - **Declaring late.** The incident process starts two hours in, after the outage got worse. The
   Workbook's GKE case set up structure about two hours into a nearly seven-hour outage.
-- **Changes nobody recorded,** so they cannot be reverted once the incident is over.
+- **Changes nobody recorded,** so nobody can undo them afterwards.
 - **Silence towards users and stakeholders** until the fix, or updates with no next-update time.
 - **Closing when the graph turns green,** with no exit criteria, so it reopens an hour later.
 - **Adding replicas or restarting everything during overload.** New tasks die under full load;
@@ -58,25 +59,27 @@ added by this skill:
 | A credential may be exposed | yes, and bring in security (synthesis) |
 | None of the above | handle it as a ticket, write notes anyway |
 
-**Roles.** Keep each role to its job so people can act without second-guessing each other:
+**Roles, by the decision each one owns.** Split the decisions so each person can act on their part
+without waiting for anyone else to sign off:
 
-| Role | Owns | Does not |
+| Decision | Owner | Everyone else |
 |---|---|---|
-| Incident commander | the overall state, priorities, who does what, any role not handed out | type commands into production |
-| Operations lead | every change to production, done by their team only | talk to stakeholders |
-| Communications lead | updates to responders, the business and users; the state doc's summary | debug |
-| Planner (long incidents) | follow-up bugs, handoffs, food and rest, the list of changes to revert | change production |
+| Who may touch production, and what gets tried next | the operations lead (the only hands on prod) | proposes changes in the doc |
+| Who talks to users, the business and other teams, and when | the communications lead | sends questions to them |
+| What the priorities are, who does what, and who owns any decision not yet handed out | the incident commander (IC), who types nothing into prod | escalates disagreements to the IC |
+| What happens after the next hour: shift changes, meals, a running list of temporary changes, follow-up work | the planner, in long incidents | adds temporary changes to the list |
 
-The roles shrink back into the IC in small incidents and can split into sub-incidents in large
-ones. Hand the IC role over live (call or video), confirm the new IC accepts, and tell everyone.
+In a small incident the IC holds every row; in a large one a row can become its own
+sub-incident. A handoff isn't done until the incoming IC says "I have it" out loud and the
+channel has been told. Do it by voice, not by chat.
 
 **Agents in an incident** (synthesis). Treat each agent as a person in the role table. One IC,
 human or agent, owns the doc and the assignment of work; investigating agents report findings
 into the doc and do not change production unless they are the operations lead. Never let two
 agents mitigate in parallel.
 
-**State document.** One live doc, most important facts at the top, editable by everyone in the
-response. A template in this skill's own layout:
+**State document.** Everyone in the response can write to it, and a reader who stops after the
+first screen should already know the impact and the plan. A template in this skill's own layout:
 
 ```
 # INCIDENT <id>: <one-line impact>              STATUS: active | mitigated | closed

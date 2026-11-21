@@ -9,8 +9,8 @@ Workbook's [Eliminating Toil](https://sre.google/workbook/eliminating-toil/) and
 
 ## What agents typically get wrong
 
-- **Calling all ops work toil.** Meetings and planning are overhead, not toil. Tidying alert
-  config is unglamorous but leaves the system better, so it is engineering.
+- **Calling all ops work toil.** Meetings and planning are overhead, not toil. Deleting dead
+  dashboards or renaming confusing metrics is dull, but it leaves things better, so it isn't toil.
 - **Calling work "not toil" because a script runs it.** If a person still has to notice, start,
   watch and check the script every time, the human time is toil.
 - **No numbers.** "We spend a lot of time restarting workers" cannot be prioritised against
@@ -37,26 +37,30 @@ Workbook's [Eliminating Toil](https://sre.google/workbook/eliminating-toil/) and
 
 ## Techniques
 
-**Is it toil?** A one-line test per property, in this skill's own framing of the SRE book's
-characteristics. The more answers on the left, the more likely it is toil:
+**Is it toil? A five-point score.** Give the task one point for each statement that is true:
 
-| Toil if... | Not toil if... |
-|---|---|
-| a person has to do or supervise it | it runs and finishes with nobody involved |
-| it has been done before and will be again | it is the first time, or a genuinely new problem |
-| a machine could do it, or a design change could remove it | it needs real judgment each time |
-| it is triggered by an interrupt | it is planned work towards a goal |
-| the system is no better afterwards | it leaves a permanent improvement |
-| it grows with traffic, users, sources or nodes | its cost stays flat as the service grows |
+- You could write it as a script today, or a design change would make it unnecessary.
+- If the fleet, the user count or the number of sources doubled, the task would happen twice as often.
+- It arrives by alert, ticket or chat message rather than from a plan.
+- A person has to start it, watch it or check its result.
+- When it is done, nothing about the system has changed for the better.
 
-**Where toil hides** (Workbook taxonomy, regrouped): request tickets for routine changes
-(access, quota, config); production interrupts (freeing disk, restarting a leaky process,
-re-driving a queue); hand-held releases and rollbacks; manual migrations; capacity and cost chores;
-repeated diagnosis of a system with poor observability.
+Three or more points: treat it as toil and put it in the log. The exception is work that needs a
+fresh decision every time; that is engineering or incident work, however often it comes up. The
+idea of toil and its traits come from the SRE book's chapter on eliminating toil; this score is
+this skill's own.
 
-**Measuring.** Pick one unit and keep it: hours is usual, including the context switch. Track it
-before, during and after a fix with as little extra work as possible (a ticket label, a chat
-command). The SRE book's surveys found SREs averaging about a third of their time on toil, with
+**Where toil hides,** grouped by how the work reaches you (informed by the Workbook):
+
+- **Asked for:** access, quota and config change requests.
+- **Alerted:** a full disk, a stuck worker, a queue to re-drive, and the same diagnosis repeated
+  because the system can't be seen into.
+- **On the calendar:** releases that need a human at each step, recurring migrations, cost and
+  headroom reviews.
+
+**Measuring.** Count in hours, and include the cost of switching into the task. Take a baseline,
+keep logging while the fix is being built, and compare afterwards. Make logging a one-click label
+or a chat command; otherwise the measuring becomes toil too. The SRE book's surveys found SREs averaging about a third of their time on toil, with
 individuals from 0 to 80%: report the distribution, not only the mean. On-call alone sets a floor:
 roughly a third of time for a 6-person rotation, a quarter for 8.
 
@@ -65,17 +69,18 @@ roughly a third of time for a 6-person rotation, a quarter for 8.
 | Move | Use when |
 |---|---|
 | Remove the need | The system can do it itself: defaults from the environment, auto-scaling, self-healing |
-| Self-service | Requesters can do it safely with a form, script, API or pull request |
+| Self-service | Requesters can do it safely themselves: a PR to a config repo, a CLI, a small web form |
 | Human-backed interface first | You know the request shape but not yet every edge case: accept structured requests, do them by hand, automate later |
 | Automate the response | The steps are deterministic (see the runbook ladder in [runbooks-and-safe-operations](runbooks-and-safe-operations.md)) |
 | Batch | Many small identical requests: do them on a schedule, which also shows patterns |
 | Refuse or use the SLO | The task's cost exceeds its value, or the error budget says it can wait |
 | Make components uniform | Special cases dominate: give every instance the same interface and config |
 
-**Automation needs the operator's caution built in.** Validate inputs, apply timeouts, cap how much
-one run may change, and hand back to a human when conditions are unsafe (Workbook). Build reusable
-pieces rather than one script per incident, and measure the automation itself: error rate, rework,
-and human time saved.
+**Automation needs the operator's caution built in.** Treat every input as untrusted, give every
+step a deadline, put a ceiling on how much one run may change, and when a precondition fails,
+stop and page rather than guess. Build reusable pieces rather than one script per incident. Then
+watch the automation itself: how often it fails or has to be redone, and how many person-hours it
+actually returns.
 
 **Getting time for it.** Show the toil numbers to whoever sets priorities; present the fix with the
 reliability, security or cost gain it brings, not only as "less boring work" (Workbook).
