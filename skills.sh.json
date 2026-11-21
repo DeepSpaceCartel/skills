@@ -115,6 +115,7 @@
         "architecture-review",
         "data-integrity",
         "data-pipelines",
+        "infrastructure-patterns",
         "system-design"
       ]
     }
