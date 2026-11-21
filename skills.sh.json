@@ -116,6 +116,7 @@
         "data-integrity",
         "data-pipelines",
         "infrastructure-patterns",
+        "production-operations",
         "system-design"
       ]
     }
