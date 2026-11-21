@@ -103,5 +103,5 @@ A synthesis across the references:
 - [`system-design`](../system-design/SKILL.md): capacity planning and limits.
 - [`structured-logging`](../structured-logging/SKILL.md), [`core-principles`](../core-principles/SKILL.md)
   (least privilege for agents and operators).
-- `secure-reliable-systems`: designing for recovery, revocation and break-glass access.
+- [`secure-reliable-systems`](../secure-reliable-systems/SKILL.md): designing for recovery, revocation and break-glass access.
 - google-cloud-waf-operational-excellence (from google/skills): GCP-specific operations guidance.

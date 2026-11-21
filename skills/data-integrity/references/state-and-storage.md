@@ -183,7 +183,7 @@ checkpoint showed the problem.
 [backup-and-restore](backup-and-restore.md) (WAL streaming as a backup),
 [disaster-recovery](disaster-recovery.md) (safe deletion of volumes),
 [`engineering-practices` reliability](../../engineering-practices/references/reliability.md)
-(SLOs and alerting); `infrastructure-patterns` (choosing StatefulSets and managed stores).
+(SLOs and alerting); [`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md) (choosing StatefulSets and managed stores).
 
 ## Sources
 

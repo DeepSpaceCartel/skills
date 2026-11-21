@@ -42,7 +42,7 @@ Kubernetes pages on [service accounts](https://kubernetes.io/docs/concepts/secur
 1. **Inventory every credential** (synthesis): what it is, what it unlocks, who issued it, its
    expiry, its owner, where the primary and recovery copies live, how it's re-issued, and **what
    depends on it** (deploys, builds, node bootstrap, backups, DR). Feed the expiry dates into the
-   deadline alerts in `production-operations`.
+   deadline alerts in [`production-operations`](../../production-operations/SKILL.md).
 2. **Trace the dependency chain** for each one: if it expired now, what stops, and does
    anything you'd need to fix it stop too? A credential that blocks its own renewal path (the
    registry token the rebuild needs, the SSO the vault login needs) gets a break-glass copy and

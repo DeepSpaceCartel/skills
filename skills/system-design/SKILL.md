@@ -13,8 +13,8 @@ the Kubernetes resource and autoscaler docs, and the AWS resilience analysis fra
 reference leads with what agents get wrong, then gives a procedure, a worked example and a
 numbered review checklist.
 
-This skill **produces** a design. Reviewing one that exists, or a launch, is `architecture-review`.
-Choosing a specific pattern (a cache, a queue, a read replica) is `infrastructure-patterns`.
+This skill **produces** a design. Reviewing one that exists, or a launch, is [`architecture-review`](../architecture-review/SKILL.md).
+Choosing a specific pattern (a cache, a queue, a read replica) is [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md).
 Making existing code faster is [`engineering-practices`](../engineering-practices/SKILL.md)
 (performance).
 
@@ -106,6 +106,6 @@ A synthesis across the references:
 - [`core-principles`](../core-principles/SKILL.md): KISS and YAGNI against over-design.
 - [`adr`](../adr/SKILL.md): recording the chosen design and the rejected iterations.
 - [`helm-charts`](../helm-charts/SKILL.md): where requests, limits and replica counts are set.
-- `architecture-review`: reviewing an existing design or a launch.
-- `infrastructure-patterns`: choosing a cache, queue, replica, pooler or managed service.
-- `production-operations`: incident response when a limit is hit in production.
+- [`architecture-review`](../architecture-review/SKILL.md): reviewing an existing design or a launch.
+- [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md): choosing a cache, queue, replica, pooler or managed service.
+- [`production-operations`](../production-operations/SKILL.md): incident response when a limit is hit in production.

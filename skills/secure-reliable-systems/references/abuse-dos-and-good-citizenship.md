@@ -50,7 +50,7 @@ page covers the system-level defence and the outbound conduct. Anchor sources:
    re-check before each crawl cycle. RFC 9309 defines no rate directive; treat a `Crawl-delay`
    line, when present, as an extra limit.
 4. **Keep politeness limits per target host** (and per shared provider), with concurrency 1 by
-   default, backoff on 429 and 503, and a global ceiling. The mechanics are in `data-pipelines`.
+   default, backoff on 429 and 503, and a global ceiling. The mechanics are in [`data-pipelines`](../../data-pipelines/SKILL.md).
 5. **Keep an opt-out list** checked before every fetch, keyed by domain and by IP range. Adding to
    it takes effect within minutes, needs no deploy, and never expires on its own.
 6. **Exclude sensitive sectors by default:** banks and payment firms, healthcare, government,

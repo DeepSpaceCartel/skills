@@ -78,7 +78,7 @@ without bound and W is not defined.
 
 **Storage growth.** Bytes per record × records × replication × (1 + index overhead) + history
 rate × retention. Then add what the volume needs beyond data: see
-[capacity-planning](capacity-planning.md) and `data-integrity`'s state-and-storage reference.
+[capacity-planning](capacity-planning.md) and [`data-integrity`](../../data-integrity/SKILL.md)'s state-and-storage reference.
 
 **Memory.** Per-process resident set × processes per node, plus caches, plus the queue's
 in-memory backlog at its cap, plus memory-backed `emptyDir` (Kubernetes counts it as container

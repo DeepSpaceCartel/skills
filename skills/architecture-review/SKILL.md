@@ -18,7 +18,7 @@ with evidence, an owner, a decision and a follow-up date, not with a score.
 
 This skill **evaluates** a design. Producing and sizing one is
 [`system-design`](../system-design/SKILL.md). Choosing a specific pattern (cache, queue, replica,
-managed service) is `infrastructure-patterns`. Fixing what a review finds usually lands in
+managed service) is [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md). Fixing what a review finds usually lands in
 [`engineering-practices`](../engineering-practices/SKILL.md),
 [`data-integrity`](../data-integrity/SKILL.md) or [`data-pipelines`](../data-pipelines/SKILL.md).
 
@@ -123,6 +123,6 @@ A synthesis across the references:
 - [`engineering-practices`](../engineering-practices/SKILL.md): reliability, release-engineering, security-practices.
 - [`owasp-asvs`](../owasp-asvs/SKILL.md): application security requirements by level.
 - [`adr`](../adr/SKILL.md): recording decisions and accepted risks.
-- `infrastructure-patterns`, `production-operations`, `secure-reliable-systems`: choosing
+- [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md), [`production-operations`](../production-operations/SKILL.md), [`secure-reliable-systems`](../secure-reliable-systems/SKILL.md): choosing
   patterns, running incidents, designing for recovery and revocation.
 - google-cloud-waf-* (from google/skills): GCP-specific pillar reviews.

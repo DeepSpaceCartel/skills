@@ -163,8 +163,8 @@ relying on it.
 [`engineering-practices`](../../engineering-practices/references/reliability.md) reliability
 (timeouts, retries, shedding mechanics);
 [`data-pipelines`](../../data-pipelines/references/failure-isolation.md) failure-isolation
-(per-source limits, backlogs); `infrastructure-patterns` (choosing a queue, replica or cache);
-`architecture-review` (reviewing an existing design).
+(per-source limits, backlogs); [`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md) (choosing a queue, replica or cache);
+[`architecture-review`](../../architecture-review/SKILL.md) (reviewing an existing design).
 
 ## Sources
 

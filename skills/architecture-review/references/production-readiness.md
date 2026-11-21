@@ -81,7 +81,7 @@ each area it links to the pack skill that owns it.
 - **B** An on-call rota exists for launch week, with an escalation path.
 - Runbooks for each page and each single point of failure, runnable by someone who didn't build it.
 - Manual steps are written down; repeated ones are on the list to automate.
-- Incident roles and a postmortem habit are in place. See `production-operations` and [`engineering-practices`](../../engineering-practices/references/reliability.md).
+- Incident roles and a postmortem habit are in place. See [`production-operations`](../../production-operations/SKILL.md) and [`engineering-practices`](../../engineering-practices/references/reliability.md).
 
 ### 5. Data safety
 - **B** Every store is on durable storage: no database on a container's writable layer or `emptyDir`. See [`data-integrity`](../../data-integrity/references/state-and-storage.md).
@@ -166,7 +166,7 @@ statement.
 [review-process](review-process.md), [failure-mode-analysis](failure-mode-analysis.md),
 [`system-design`](../../system-design/SKILL.md), [`data-integrity`](../../data-integrity/SKILL.md),
 [`data-pipelines`](../../data-pipelines/SKILL.md),
-[`engineering-practices`](../../engineering-practices/SKILL.md), `production-operations`.
+[`engineering-practices`](../../engineering-practices/SKILL.md), [`production-operations`](../../production-operations/SKILL.md).
 
 ## Sources
 

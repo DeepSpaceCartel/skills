@@ -5,7 +5,7 @@ poison records and dead-letter queues, redrive, rate limits and cooldowns per so
 hotspots and work partitioning, queue backlogs and load leveling, and keeping reads off the
 coordinator's write path. Per-call timeouts, retry budgets and circuit breakers are in
 [reliability](../../engineering-practices/references/reliability.md); choosing a broker or
-workflow engine belongs to `infrastructure-patterns`. Anchor sources: the AWS Builders' Library,
+workflow engine belongs to [`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md). Anchor sources: the AWS Builders' Library,
 [Avoiding insurmountable queue backlogs](https://builder.aws.com/content/3EuRcgkTP1MI0c7zM8W6HL3WIqA/avoiding-insurmountable-queue-backlogs);
 the Azure [Queue-Based Load Leveling](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling),
 [Competing Consumers](https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers)
@@ -172,7 +172,7 @@ record 2 after 3 attempts, with its error kept for the redrive.
 [idempotent-stages](idempotent-stages.md) (leases, redrive safety),
 [pipeline-slos](pipeline-slos.md) (freshness by reason, queue age),
 [reliability](../../engineering-practices/references/reliability.md) (timeouts, retry budgets,
-bulkheads, load shedding), `infrastructure-patterns` (broker and queue choice, read replicas).
+bulkheads, load shedding), [`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md) (broker and queue choice, read replicas).
 
 ## Sources
 

@@ -174,7 +174,7 @@ documents: a cascade the application forgot.
 [backup-and-restore](backup-and-restore.md) (PITR and retention),
 [disaster-recovery](disaster-recovery.md) (incident order),
 [`engineering-practices`](../../engineering-practices/SKILL.md) (database-migrations for
-backfills; reliability for postmortems), `data-pipelines` (re-running a pipeline over bad data).
+backfills; reliability for postmortems), [`data-pipelines`](../../data-pipelines/SKILL.md) (re-running a pipeline over bad data).
 
 ## Sources
 

@@ -58,7 +58,7 @@ covers what is different when there is an adversary. Anchor sources:
 
 1. **Triage:** false positive, contained bug, or attacker? Ask what the system can reach, what
    trusts it, and whether other controls still hold (BSRS ch. 17).
-2. **Declare and bring in security early.** Use the `production-operations` roles, with these
+2. **Declare and bring in security early.** Use the [`production-operations`](../../production-operations/SKILL.md) roles, with these
    changes: need-to-know membership, written confidentiality rules each responder acknowledges,
    and a clean out-of-band channel.
 3. **Preserve before touching:** snapshot disks and memory, export logs, record hashes. Write

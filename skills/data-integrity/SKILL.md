@@ -92,10 +92,10 @@ A synthesis across the references:
   changes, backfills), reliability (SLOs, alerting, postmortems), security-practices (leaked
   credentials).
 - [`core-principles`](../core-principles/SKILL.md): defensive programming, fail fast.
-- `data-pipelines`: reprocessing or re-driving data through a pipeline.
-- `infrastructure-patterns`: choosing managed versus self-hosted stores and deployment shapes.
-- `architecture-review`: its provider crosswalk lists each cloud's backup and DR services.
-- `production-operations`, `secure-reliable-systems`: incident response; rollback, revocation and
+- [`data-pipelines`](../data-pipelines/SKILL.md): reprocessing or re-driving data through a pipeline.
+- [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md): choosing managed versus self-hosted stores and deployment shapes.
+- [`architecture-review`](../architecture-review/SKILL.md): its provider crosswalk lists each cloud's backup and DR services.
+- [`production-operations`](../production-operations/SKILL.md), [`secure-reliable-systems`](../secure-reliable-systems/SKILL.md): incident response; rollback, revocation and
   break-glass design.
 - [`helm-charts`](../helm-charts/SKILL.md): where PVC, StatefulSet and resource settings are
   templated.

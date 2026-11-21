@@ -112,6 +112,6 @@ This skill's synthesis from practice, not from one source:
 - [`structured-logging`](../structured-logging/SKILL.md): per-item tracking IDs and error
   classes in logs.
 - [`cloudevents`](../cloudevents/SKILL.md): envelopes for change feeds between services.
-- `infrastructure-patterns`: choosing a broker, queue or workflow engine; keeping reads off the
+- [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md): choosing a broker, queue or workflow engine; keeping reads off the
   write path.
-- `production-operations`: incident response when a pipeline is down.
+- [`production-operations`](../production-operations/SKILL.md): incident response when a pipeline is down.

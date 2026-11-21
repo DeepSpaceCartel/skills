@@ -179,8 +179,8 @@ success to monitoring, and alert when it is older than the drill interval.
 [corruption-and-bad-writes](corruption-and-bad-writes.md) (recovering from a bad write),
 [state-and-storage](state-and-storage.md) (where state lives),
 [`engineering-practices` security-practices](../../engineering-practices/references/security-practices.md)
-(leaked credentials), `secure-reliable-systems` (rollback, revocation, break-glass design),
-`production-operations` (incident response).
+(leaked credentials), [`secure-reliable-systems`](../../secure-reliable-systems/SKILL.md) (rollback, revocation, break-glass design),
+[`production-operations`](../../production-operations/SKILL.md) (incident response).
 
 ## Sources
 

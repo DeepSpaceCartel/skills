@@ -171,7 +171,7 @@ first in the plan.
 [estimation](estimation.md), [scaling-and-failure-domains](scaling-and-failure-domains.md);
 [`data-integrity`](../../data-integrity/SKILL.md) (volume sizing, ephemeral-storage evictions);
 [`helm-charts`](../../helm-charts/SKILL.md) (where requests and limits are templated);
-`infrastructure-patterns` (choosing node pools, poolers, managed services).
+[`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md) (choosing node pools, poolers, managed services).
 
 ## Sources
 

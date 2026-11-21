@@ -165,7 +165,7 @@ known baseline. Size the target before moving.
   for a restore, backfill or dual-write load on top of live traffic, and the rollback path.
 - **Cutover mechanics** are elsewhere: schema and data moves in
   [`engineering-practices`](../../engineering-practices/references/database-migrations.md)
-  database-migrations, storage placement and restore drills in `data-integrity`'s
+  database-migrations, storage placement and restore drills in [`data-integrity`](../../data-integrity/SKILL.md)'s
   [state-and-storage](../../data-integrity/references/state-and-storage.md).
 
 ## Gotchas and contested points
@@ -199,7 +199,7 @@ known baseline. Size the target before moving.
 [estimation](estimation.md), [capacity-planning](capacity-planning.md),
 [scaling-and-failure-domains](scaling-and-failure-domains.md);
 [`data-pipelines`](../../data-pipelines/SKILL.md) for the crawler's correctness;
-`architecture-review` for reviewing a finished design; `infrastructure-patterns` for choosing a
+[`architecture-review`](../../architecture-review/SKILL.md) for reviewing a finished design; [`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md) for choosing a
 queue, cache or replica.
 
 ## Sources
