@@ -62,7 +62,8 @@
       "description": "Building container images and packaging workloads for Kubernetes.",
       "skills": [
         "container-images",
-        "helm-charts"
+        "helm-charts",
+        "kubernetes"
       ]
     },
     {
