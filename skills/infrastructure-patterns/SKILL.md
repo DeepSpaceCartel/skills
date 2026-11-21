@@ -75,6 +75,7 @@ breakers and idempotency is [`engineering-practices`](../engineering-practices/S
 
 | Symptom | Look at |
 |---|---|
+| Writers fail with "database is locked" while a big batch (an import, a bulk push of many operations) holds one long write transaction | [work-queues-and-competing-consumers](references/work-queues-and-competing-consumers.md) (queue the batch and apply it in small transactions through one writer), [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) (keep reports off the writer), [`system-design`](../system-design/SKILL.md) (single-writer limits) |
 | One user action produces many upstream requests; retries show up in both client logs and the mesh | [timeouts-and-retries-infra](references/timeouts-and-retries-infra.md) |
 | A gateway returns 504 while the backend finishes the work, then the client retries it | [timeouts-and-retries-infra](references/timeouts-and-retries-infra.md) |
 | Exports or uploads fail at exactly 15 s behind Envoy | [timeouts-and-retries-infra](references/timeouts-and-retries-infra.md) |

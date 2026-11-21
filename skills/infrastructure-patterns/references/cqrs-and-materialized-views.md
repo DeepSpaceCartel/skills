@@ -106,7 +106,8 @@ expected event lag, and the alert threshold sits between them.
 
 A dashboard report scanning the jobs table while a worker commits, in SQLite rollback-journal
 mode and WAL mode. The worker also updates a `job_counts` summary in the same transaction
-(connections with `timeout=0`, so a lock fails at once instead of waiting):
+(connections with `timeout=0`, so a lock fails at once instead of waiting). Excerpt: the imports,
+the schema and the `connect` and `w` setup are omitted, so it doesn't run on its own:
 
 ```python
 report = connect(journal)

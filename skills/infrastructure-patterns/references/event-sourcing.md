@@ -108,7 +108,8 @@ full history rebuild from the store, not the topic.
 ## Example
 
 A seat-reservation stream in SQLite with an expected-version append, an upcaster for an old
-schema, and a snapshot:
+schema, and a snapshot. Excerpt: the imports and the `db` connection are omitted, so it doesn't
+run on its own:
 
 ```python
 db.executescript("""
