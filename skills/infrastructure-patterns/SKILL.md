@@ -9,8 +9,8 @@ A catalog of patterns for the infrastructure around a service: how it survives n
 failures, overload and bad neighbours; how messages move between components; how reads and
 writes scale. Each reference states the problem, when the pattern fits and when it doesn't, how
 it works, what agents get wrong, neutral implementation notes (Kubernetes, Envoy/Istio, NGINX,
-HAProxy) with a one-line managed-cloud equivalent, a concrete config example, and a numbered
-review checklist.
+HAProxy for traffic; Postgres, Kafka, RabbitMQ, NATS, Redis for messaging and data) with a one-line
+managed-cloud equivalent, a concrete config or code example, and a numbered review checklist.
 
 This skill is about *choosing and configuring a pattern*. Sizing the result is
 [`system-design`](../system-design/SKILL.md); reviewing a whole architecture is
@@ -49,7 +49,16 @@ breakers and idempotency is [`engineering-practices`](../engineering-practices/S
 
 ### Messaging
 
-Filled by a later part of this catalog.
+| Pattern | The question it answers | Read when | Reference |
+|---|---|---|---|
+| Publish-subscribe | Who gets every event, in what order, and can a late consumer replay? | Fan-out to several services; partition keys; retention and replay; choosing Kafka, RabbitMQ, NATS or Redis Streams | [publish-subscribe](references/publish-subscribe.md) |
+| Work queues and competing consumers | How do workers share a backlog without losing or doubling work? | Background jobs; visibility timeouts and leases; priority queues; backpressure; large payloads (claim check) | [work-queues-and-competing-consumers](references/work-queues-and-competing-consumers.md) |
+| Transactional outbox | How do a database write and a message both happen, or neither? | A dual write; publishing domain events; polling publisher vs CDC (Debezium) | [transactional-outbox](references/transactional-outbox.md) |
+| Idempotent consumer | What stops a redelivered message from applying twice? | Any at-least-once consumer; dedupe keys; out-of-order updates | [idempotent-consumer](references/idempotent-consumer.md) |
+| Dead-letter queues | Where do poison messages go, and how do they come back? | RabbitMQ DLX, SQS redrive, Kafka dead-letter topics; retry ladders; DLQ alerts | [dead-letter-queues](references/dead-letter-queues.md) |
+| CQRS and materialized views | Should reads come from a separate model, and how stale may it be? | Reports or stats on the write path; read/write imbalance; projections; rebuilds | [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) |
+| Event sourcing | Should the event history be the source of truth? | Audit, temporal queries or replay are requirements; snapshots; event schema evolution | [event-sourcing](references/event-sourcing.md) |
+| Sagas | How does a multi-service operation finish consistent without a distributed transaction? | Orchestration vs choreography; compensations; semantic locks | [sagas](references/sagas.md) |
 
 ### Performance and scaling
 
@@ -86,6 +95,18 @@ Filled by a later part of this catalog.
 | Containers `OOMKilled`, or the wrong pods evicted under node pressure | [requests-limits-and-autoscaling](references/requests-limits-and-autoscaling.md), [`system-design` capacity-planning](../system-design/references/capacity-planning.md) |
 | One bad deploy or one poison request took down every customer at once | [cells-and-shuffle-sharding](references/cells-and-shuffle-sharding.md) |
 | A single noisy tenant breaks the workers or queues everyone shares | [cells-and-shuffle-sharding](references/cells-and-shuffle-sharding.md), [bulkheads-and-isolation](references/bulkheads-and-isolation.md) |
+| A row was committed but the event about it never arrived, or an event arrived for a row that rolled back | [transactional-outbox](references/transactional-outbox.md) |
+| A customer was charged, emailed or counted twice after a redeploy or broker restart | [idempotent-consumer](references/idempotent-consumer.md) |
+| Events for one entity are applied out of order ("cancelled" before "created") | [publish-subscribe](references/publish-subscribe.md) (partition key), [idempotent-consumer](references/idempotent-consumer.md) (version guard) |
+| A consumer came back after an outage and silently skipped data | [publish-subscribe](references/publish-subscribe.md) (retention, `auto.offset.reset`) |
+| Two workers process the same job; slow jobs get redone under load | [work-queues-and-competing-consumers](references/work-queues-and-competing-consumers.md) (lease length, heartbeat) |
+| One message crashes every worker that takes it, or blocks an ordered partition | [dead-letter-queues](references/dead-letter-queues.md) |
+| Messages sit in a DLQ for weeks, or vanished from it | [dead-letter-queues](references/dead-letter-queues.md) |
+| A backfill in the shared queue delays every user-triggered job | [work-queues-and-competing-consumers](references/work-queues-and-competing-consumers.md) (priority queues) |
+| An admin dashboard or stats query stalls the workers or writers | [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) |
+| A read model or view is silently hours behind | [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) |
+| A step of a multi-service operation failed and the earlier steps stayed applied | [sagas](references/sagas.md) |
+| "Let's event-source it" for an audit log | [event-sourcing](references/event-sourcing.md) |
 
 ## Reliability at two layers
 
@@ -103,6 +124,7 @@ work continue after the caller gave up.
 | Bulkheads | [reliability](../engineering-practices/references/reliability.md): pool or semaphore per dependency | [bulkheads-and-isolation](references/bulkheads-and-isolation.md): node pools, quotas, priority, per-destination pools | Code pools sized from the infrastructure limit divided by the maximum replica count |
 | Rate limits | [reliability](../engineering-practices/references/reliability.md): honour 429 and `Retry-After` | [rate-limiting-and-throttling](references/rate-limiting-and-throttling.md): edge and mesh limits per key | Each principal's limit enforced in one place; 429s propagated, never silently retried |
 | Load shedding | [reliability](../engineering-practices/references/reliability.md): criticality, deadline checks, client throttling | [load-shedding](references/load-shedding.md): proxy caps, bounded queues | Proxy caps sit above the server's own shedding point, so the server sheds by priority first |
+| Duplicate deliveries | [idempotent-consumer](references/idempotent-consumer.md): dedupe record committed with the effect, version guard | [dead-letter-queues](references/dead-letter-queues.md), [work-queues-and-competing-consumers](references/work-queues-and-competing-consumers.md): redelivery limits, lease length, retention | Brokers redeliver; only code dedupes. Keep dedupe records longer than retention plus DLQ retention plus redrive delay |
 
 ## Working rules
 
