@@ -101,6 +101,7 @@ Building container images and packaging workloads for Kubernetes.
 | --- | --- |
 | [`container-images`](skills/container-images/SKILL.md) | Dockerfiles and image builds — multi-stage, caching, minimal bases, non-root, build secrets, multi-arch ([docs.docker.com](https://docs.docker.com/build/building/best-practices/)) |
 | [`helm-charts`](skills/helm-charts/SKILL.md) | Authoring and reviewing Helm charts — values, helpers, hooks, dependencies, testing, upgrade semantics ([helm.sh](https://helm.sh/docs/chart_best_practices/)) |
+| [`kubernetes`](skills/kubernetes/SKILL.md) | Which Kubernetes tool to pick and how to run it — KEDA queue-driven Jobs, Karpenter, Kueue, GPUs, GitOps (Flux vs Argo CD), multi-cluster, operators vs a Postgres queue, Kyverno v1 policies, Talos, debugging, recently changed facts ([kubernetes.io](https://kubernetes.io/docs/)) |
 
 ### CI/CD
 
