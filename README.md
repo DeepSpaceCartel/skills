@@ -157,6 +157,7 @@ Designing, sizing, reviewing and operating production systems: data protection, 
 | --- | --- |
 | [`data-integrity`](skills/data-integrity/SKILL.md) | Protecting stored data — RPO/RTO, backups and continuous WAL archiving, restore drills, where state lives, WAL and disk growth, corruption and bad writes, disaster recovery, safe deletion |
 | [`data-pipelines`](skills/data-pipelines/SKILL.md) | Running ingestion, crawler and ETL pipelines — freshness and per-field completeness SLIs, proving a read complete before acting on absence, our-side vs source failures, idempotent checkpointed stages, backfills and shadow runs, dead-letter queues and per-source rate limits |
+| [`system-design`](skills/system-design/SKILL.md) | Requirements to a concrete, sized design (NALSD) — back-of-the-envelope estimates, capacity planning with a limits inventory and runway dates, Kubernetes requests/limits and OOM kills, single points of failure, failure domains, leader election and distributed cron |
 
 ## License
 
