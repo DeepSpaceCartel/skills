@@ -62,7 +62,14 @@ breakers and idempotency is [`engineering-practices`](../engineering-practices/S
 
 ### Performance and scaling
 
-Filled by a later part of this catalog.
+| Pattern | The question it answers | Read when | Reference |
+|---|---|---|---|
+| Cache-aside and read-through | How do reads hit a cache without stale data or a stampede on the store? | Adding Redis, Valkey or memcached; TTLs and invalidation; hot keys expiring; a cold cache after a restart | [cache-aside](references/cache-aside.md) |
+| CDN and static content | What may the edge cache, for how long, and does it keep serving when the origin is down? | `Cache-Control`, `Vary` and cache keys; versioned assets; purges; origin shielding; `stale-if-error` | [cdn-and-static-content](references/cdn-and-static-content.md) |
+| Load balancing | Does each backend get the load it can handle? | Choosing L4 or L7 and an algorithm; slow or new pods; gRPC, HTTP/2 or WebSockets pinned to one pod; session affinity | [load-balancing](references/load-balancing.md) |
+| Read replicas | Can reads move off the primary without users missing their own writes? | Read-heavy load on one database; replication lag; read-your-writes; failover; PgBouncer pooling | [read-replicas](references/read-replicas.md) |
+| Sharding | How is data split across databases once one node can't hold the writes? | Write or storage limits after vertical scaling; shard keys and hotspots; resharding; partitioning vs Citus or Vitess | [sharding](references/sharding.md) |
+| Materialized views | Should an expensive query be precomputed, and how stale may it be? | Dashboards or aggregates on the write path; refresh strategy; rebuilds | [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) |
 
 ## Symptom to pattern
 
@@ -107,6 +114,20 @@ Filled by a later part of this catalog.
 | A read model or view is silently hours behind | [cqrs-and-materialized-views](references/cqrs-and-materialized-views.md) |
 | A step of a multi-service operation failed and the earlier steps stayed applied | [sagas](references/sagas.md) |
 | "Let's event-source it" for an audit log | [event-sourcing](references/event-sourcing.md) |
+| Every pod queries the database at once when a popular key expires, or right after the cache restarts | [cache-aside](references/cache-aside.md) (coalescing, early expiry, cold cache) |
+| Users see old data after an update; the cache was cleared before the write | [cache-aside](references/cache-aside.md) (write the store, then delete the key; TTL on every key) |
+| Redis fills its host's memory, or writes fail with an OOM error | [cache-aside](references/cache-aside.md) (`maxmemory`, eviction policy) |
+| One user's page or data was served to another from the CDN | [cdn-and-static-content](references/cdn-and-static-content.md) (cache key, `private`, cookies) |
+| A deploy shipped but browsers still run the old script | [cdn-and-static-content](references/cdn-and-static-content.md) (content-hashed asset URLs) |
+| The origin went down and so did the public site, though the CDN was in front | [cdn-and-static-content](references/cdn-and-static-content.md) (`stale-if-error`, the `s-maxage` trap) |
+| New gRPC or HTTP/2 pods sit idle after a scale-out | [load-balancing](references/load-balancing.md) (per-request balancing, connection age) |
+| One slow or failing pod has the longest queue, or the most traffic | [load-balancing](references/load-balancing.md), [circuit-breaking-and-outlier-ejection](references/circuit-breaking-and-outlier-ejection.md) |
+| Newly started pods time out under full traffic | [load-balancing](references/load-balancing.md) (slow start) |
+| A user saves something and the next page doesn't show it | [read-replicas](references/read-replicas.md) (read-your-writes) |
+| Reports on a replica are cancelled, or the primary bloats while they run | [read-replicas](references/read-replicas.md) (standby conflicts, `hot_standby_feedback`) |
+| "Too many connections" after adding replicas or pods | [read-replicas](references/read-replicas.md) (PgBouncer), [`system-design` capacity-planning](../system-design/references/capacity-planning.md) |
+| One shard takes all new writes, or adding a shard moves most of the data | [sharding](references/sharding.md) (shard key, consistent hashing, virtual shards) |
+| "We need to shard" for a table that fits on one node | [sharding](references/sharding.md) (the ladder: index, scale up, replicas, partitioning) |
 
 ## Reliability at two layers
 
