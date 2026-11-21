@@ -149,6 +149,14 @@ Time-tested, source-backed workflows for everyday engineering tasks.
 | --- | --- |
 | [`engineering-practices`](skills/engineering-practices/SKILL.md) | Time-tested workflows for everyday engineering tasks — testing, debugging, refactoring, database migrations, reliability, security, API evolution, performance, release engineering — each with what agents get wrong, a procedure and a checklist, grounded in canonical sources |
 
+### Production Engineering
+
+Designing, sizing, reviewing and operating production systems: data protection, pipelines, capacity, architecture review, infrastructure patterns, operations, and builds.
+
+| Skill | What it covers |
+| --- | --- |
+| [`data-integrity`](skills/data-integrity/SKILL.md) | Protecting stored data — RPO/RTO, backups and continuous WAL archiving, restore drills, where state lives, WAL and disk growth, corruption and bad writes, disaster recovery, safe deletion |
+
 ## License
 
 MIT, see [LICENSE](LICENSE).

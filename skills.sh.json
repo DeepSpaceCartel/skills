@@ -107,6 +107,13 @@
       "skills": [
         "engineering-practices"
       ]
+    },
+    {
+      "title": "Production Engineering",
+      "description": "Designing, sizing, reviewing and operating production systems: data protection, pipelines, capacity, architecture review, infrastructure patterns, operations, and builds.",
+      "skills": [
+        "data-integrity"
+      ]
     }
   ]
 }
