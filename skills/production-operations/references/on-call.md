@@ -12,8 +12,8 @@ Workbook's [On-Call](https://sre.google/workbook/on-call/) and
 
 - **Counting alerts, not incidents.** Load is the number of distinct problems per shift. Ten
   alerts for one outage is one incident and a grouping bug.
-- **Lowering thresholds to quiet the pager.** With SLO-based alerting, relaxing a threshold is
-  rarely the fix; the page is telling you about the system (Workbook).
+- **Lowering thresholds to quiet the pager.** When pages already track the SLO and user-visible
+  symptoms, a noisy pager means the system is hurting users; fix that, not the alert (Workbook).
 - **"Transient, closed."** A page dismissed without follow-up comes back on the next shift. Each
   page gets a cause, or added monitoring if the cause stays unknown.
 - **On-call plus a full project load.** The person holding the pager is not expected to deliver
@@ -79,11 +79,12 @@ Pages this shift: <count>; repeat sources: <alert names>
 Watch for: <anything expected in the next shift>
 ```
 
-**Team overload.** Signs (Workbook ch. 17): tickets ageing, long hours, falling morale, interrupts
-arriving faster than they close. Recovery: list and triage every open task together, close the
-obsolete ones, automate or document the quick ones, park the rest with notes, cut alerts that do
-not reflect user pain, and hand back or drop work you cannot carry. Pick the load metrics as a
-team and review them on a schedule.
+**Team overload** (Workbook ch. 17). It shows in the queue before anyone says it: issues stay
+open longer each week, people work late or while ill, the mood sours. The way out has two halves.
+Shrink the backlog: put every open item in front of the whole team at once, drop what nobody
+would miss, and leave a context note on anything paused. Cut the inflow: delete alerts nobody acts
+on, add cheap automation or self-service docs, and give back a service you cannot carry. Then
+watch measures the team chose itself, on a fixed cadence.
 
 **Small team, solo founder, and agents.** This section is the skill's own synthesis; the sources
 assume real rotations.

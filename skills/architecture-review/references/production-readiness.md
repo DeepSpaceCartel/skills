@@ -39,20 +39,21 @@ each area it links to the pack skill that owns it.
    a repeat of a known launch type): run the launch blockers only, marked **B** below. Anything
    else: the full checklist and a failure-mode walk
    ([failure-mode-analysis](failure-mode-analysis.md)).
-2. **Agree the engagement.** Who leads the review, the SLOs, the recovery targets, any design
-   changes still planned, and the date the service takes real users.
-3. **Analyse.** Go through the checklist with evidence (as in
-   [review-process](review-process.md)). Read the service's recent incidents and their open
-   action items.
-4. **Agree the fixes.** Rank the gaps by their importance to reliability, negotiate them with
-   the owning team, and write the plan with owners and dates. Blockers must close before launch;
-   others get a date after it.
-5. **Train and hand over.** Whoever will run it gets a design walk-through, a request-flow deep
-   dive and a hands-on drill (a rollback, a restore). On-call and access move over in steps,
-   with the builders as backup for a while.
+2. **Set the terms.** Settle with the owning team the go-live date, who runs the review, the
+   targets it measures against (SLOs, RTO, RPO) and any redesign already on the roadmap.
+3. **Collect evidence.** Walk the checklist asking for an artefact per item (as in
+   [review-process](review-process.md)). Past outages count too: a postmortem whose follow-ups
+   are still open marks a weak spot.
+4. **Turn gaps into a plan.** Order the gaps by how much each threatens the SLO, settle that
+   order with the team that owns the code, and give each fix an owner and a date. Blockers close
+   before launch; the rest get a date after it.
+5. **Prepare the operators.** The new owners learn by doing: trace one real request end to end
+   with a builder, then perform a rollback and a restore themselves. Hand over in slices
+   (dashboards and access first, primary on-call last), builders on the escalation path until
+   nobody calls them.
 6. **Launch in steps** (rollout section below), watching the SLO at each step.
-7. **Keep it ready.** Re-review after big changes and incidents, and feed what operations
-   teaches back into the checklist.
+7. **Keep it ready.** Readiness decays: a big change or a serious incident triggers another
+   pass, and each lesson from running the service becomes a checklist item.
 
 ## Techniques: the checklist
 
@@ -141,8 +142,8 @@ statement.
 
 ## Gotchas and contested points
 
-- **Checklists grow.** Prune it once or twice a year; replace long sections with "use the
-  shared component" when one exists.
+- **Checklists grow.** Each added item taxes every later launch. Cut stale items on a fixed
+  schedule, and where a shared component covers an area, point at it instead of listing detail.
 - **A PRR is cheaper early.** Reviewing a design before it's built avoids redesign; reviewing
   only at launch finds problems when they are most expensive.
 - **Not every service needs a handover.** A small service can stay with its builders; the

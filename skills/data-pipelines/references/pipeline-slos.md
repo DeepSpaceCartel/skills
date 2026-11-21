@@ -64,10 +64,10 @@ and the AWS Builders' Library on
 | Completeness | Item from the source is present in the output; field is non-empty | Items the source states, or a sample from an audit | Partial walks, dropped fields, filtered rows |
 | Correctness | Output matches a known answer | Golden inputs, or audited samples | Parser and transform bugs, wrong joins |
 
-- **Freshness forms.** Three shapes work: share of items processed within T; age of the oldest
-  unprocessed item; a run that completes inside a window. For a fleet of sources, use share of
-  sources whose last *proven-complete* read is within T. A failed or partial run does not reset
-  the clock.
+- **Freshness forms.** A batch job can promise a finish time; a stream can bound how old its
+  oldest waiting item gets, or what share of items clears within T. A fleet of sources needs the
+  share of sources whose last *proven-complete* read is within T; a failed or partial run does
+  not reset the clock.
 - **Completeness against a stated total.** Where a source states how many items it has, rows
   walked over the stated total is a per-run completeness check. See
   [completeness-and-absence](completeness-and-absence.md).

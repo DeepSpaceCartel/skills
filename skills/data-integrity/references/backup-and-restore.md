@@ -67,10 +67,11 @@ pages, and [Litestream](https://litestream.io/how-it-works/).
 | SQLite WAL streaming (Litestream-style) | Sync interval (about 1 s by default) | Snapshot plus replay of later files | Any file boundary | Async: a crash loses the last interval |
 | Incremental (block or page deltas) | As the base type | Full plus every increment | As the base | Chains raise restore risk; track dependencies yourself |
 
-- **Tiers.** The SRE book describes layers: frequent, fast, short-lived copies close to the data
-  for quick restores, then slower copies kept longer on separate storage, then offline or
-  offsite copies for losing a whole site. A common shorthand is "3-2-1": three copies, two kinds
-  of media, one offsite (a folk rule, unverified against a primary source here).
+- **Tiers.** The SRE book's layering trades restore speed for reach. A copy on the same storage
+  comes back in minutes but is costly to keep and shares that storage's fate, so it covers days;
+  cheaper copies elsewhere cover weeks; only offline or offsite media survives losing the site.
+  A common shorthand is "3-2-1": three copies, two kinds of media, one offsite (a folk rule,
+  unverified against a primary source here).
 - **Postgres WAL archiving.** Set `wal_level=replica`, `archive_mode=on`, and `archive_command`
   or `archive_library`. The command must exit 0 only when the file is safely stored, and it must
   refuse to overwrite a different file of the same name. A forced segment is still 16 MB, so a

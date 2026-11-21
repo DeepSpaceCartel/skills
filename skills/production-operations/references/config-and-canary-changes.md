@@ -32,46 +32,46 @@ canary. Anchor sources: the SRE Workbook's
 
 **Designing a configuration surface**
 
-1. List what users are trying to achieve, then ask the fewest questions that get there. Prefer
-   "what" (a target, a tier) over "how" (thread counts, buffer sizes).
-2. Turn mandatory settings into optional ones with safe defaults; derive defaults from the
-   environment where possible (cores, memory, region).
-3. Offer low-level overrides for power users without making everyone see them.
-4. Separate the source people edit from the plain data the service reads (JSON, YAML, protobuf).
-5. Give every setting an owner, keep it in version control, and log both the edit and the
-   resulting change in the system.
+1. Fix the contract first: the service reads only generated plain data (JSON, YAML, protobuf)
+   with a schema you own, and whatever people edit (a config language, a UI) compiles to it.
+2. Make the common case a short file. State outcomes (a target, a tier), not mechanisms (thread
+   counts, buffer sizes); anything else gets a safe default, and values that depend on the host
+   (cores, memory, region) are computed there rather than asked for.
+3. Put the low-level controls behind explicit overrides that experts can reach and nobody else
+   has to read.
+4. Make every change traceable: one owner per setting, history in version control, and a record
+   of both the commit and the moment it took effect in the running system.
 
 **Shipping a config change**
 
 1. Validate at commit: schema, unknown keys rejected, semantic checks (paths exist, units, ranges,
    references resolve), in CI and a pre-commit hook.
 2. Evaluate hermetically: same input, same output; no network or clock reads during evaluation.
-3. Roll out in stages like code: one canary target, compare with a concurrent control, then widen.
-4. Keep the previous version deployable; rollback is re-applying it.
-5. Stop automatically, or roll back, if a step loses operator control or breaks the canary
-   thresholds.
-6. Guard changes that could lock operators out (firewall rules, auth config, admin network
-   policy) with a confirm-or-revert timer.
+3. Keep the last good version one command away: rollback means re-applying it, which only
+   works if step 2 holds.
+4. Push it like a binary: one canary target judged against a concurrent control, then wider
+   steps, and the pipeline halts or reverts by itself when a step trips the canary thresholds or
+   cuts operators off.
+5. Apply anything that could lock operators out (firewall rules, auth config, admin network
+   policy) under a timer that reverts unless someone confirms from the new state.
 
 ## Techniques
 
 **Config surface design, in short:**
 
-| Choice | Prefer | Avoid |
+| Layer | Good sign | Warning sign |
 |---|---|---|
-| Questions | few, in the user's terms | every internal parameter |
-| Defaults | safe, dynamic where useful | blank mandatory fields |
-| Power users | optional overrides | the lowest common denominator for all |
-| Format | data compiled from a real config language (Jsonnet, Dhall) or plain data | YAML with string templating; a general-purpose scripting language |
-| Evaluation | hermetic, then side effects | queries or writes during evaluation |
-| Data model | named objects, grouped by function | arrays of named entries, interpolated strings |
+| What people edit | a few outcome-level inputs, mostly optional; expert overrides out of the default view | a form listing every internal parameter, or one low-level shape forced on everyone |
+| How it is written | plain data, or a purpose-built config language (Jsonnet, Dhall) compiled to it | text templates over YAML; a general-purpose scripting language |
+| What the service reads | maps keyed by name, related settings in one subtree, produced by a pure evaluation with side effects only afterwards | lists of entries carrying a `name` field; strings with interpolation; lookups or writes while evaluating |
 
 The Workbook names HOCON, Flabbergast, Dhall and Jsonnet as existing configuration languages, and
 warns that Python, Ruby or Lua need sandboxing to be hermetic.
 
-**When to evaluate.** Check in generated output (reviewers see the concrete diff, but files get big
-and may hold secrets); evaluate at build time and ship the data inside the artifact; or evaluate
-at runtime (simplest, but errors surface in production). Pick one per system and say which.
+**When to evaluate.** Pick one moment per system and write it down. Inside the running service is
+the least machinery, but mistakes show up only in production. In the build, with the data shipped
+in the artifact, source and output can't drift apart. Committing the output beside its source
+shows reviewers the literal diff, at the price of bulky files and a place for secrets to leak.
 
 **Guard the evaluator.** Config evaluation can loop or blow up exponentially. If a service
 evaluates configs supplied by users, sandbox it with CPU and memory limits.
@@ -80,18 +80,12 @@ evaluates configs supplied by users, sandbox it with CPU and memory limits.
 already says (concurrent control, few user-facing metrics, one canary at a time) is not repeated.
 The additional rules from the Workbook:
 
-| Concern | Rule |
+| Question | Answer |
 |---|---|
-| Breakdown | Metrics must split by canary vs control; aggregate numbers hide a small canary |
-| Window | The metric's aggregation window must not be longer than the canary |
-| Duration | Long enough to be representative of traffic mix and time of day; at least one full unit of work for batch, rendering or pipeline jobs |
-| Batch pipelines | Keep each work unit in one pool (canary or control) through every stage |
-| Metric choice | Start with SLIs: failed requests and latency. CPU is usually noisy. Keep to about a dozen at most |
-| Attribution | Per-process metrics (CPU spent serving) over whole-machine ones; exclude outlier hosts and shared failure domains |
-| Stages | Small first stage with the clearest signals (crashes, errors); richer metrics at larger stages |
-| Absolute check | Also check the canary against the SLO itself: shared backends can make canary and control fail together |
-| Interpreting a failure | A failing canary is not always the canary's fault; check for cross-talk via shared state |
-| Parameters | Use your history of canary failures to set size and duration, not worst-case guesses |
+| What to compare | Every canary metric split into canary and control, since a fleet-wide figure buries a 5% slice. Numbers owned by the serving process (its own CPU time, its own errors) beat host totals; odd hosts are left out. The two groups share backends and can sink together, so the canary also has to clear the SLO on its own |
+| Which signals | The user-facing SLIs (errors, latency) first; resource numbers like CPU are noisy. A short list people trust, on the order of ten, beats a long one they learn to ignore. Blunt signals (crashes, failed requests) suit a tiny first stage; subtler ones can join as the stages grow |
+| How long | Never shorter than the window a metric is aggregated over, and long enough to see a typical request mix and peak hours. Batch, rendering or pipeline work needs at least one whole work unit, and a unit stays with the same group (canary or control) at every step. Calibrate size and length against your own canary record |
+| What a red result means | Stop and investigate, but don't convict the new version yet: shared state can carry a fault from one group to the other |
 
 **Error-budget cost.** Exposure scales with the canary share: a change that fails 20% of requests
 costs about 1% overall on a 5% canary. A small, quick canary bounds the budget a bad release can
@@ -138,7 +132,8 @@ The 1.5x ratio and z > 3 are illustrative thresholds, not sourced ones.
   only large-effect detection.
 - **Rollback needs hermetic config.** If the old version pulls something that changed since, re-
   applying it does not restore the old behaviour.
-- **Checked-in generated config** is reviewable but can leak secrets and cause merge conflicts.
+- **Committed generated output** shows a change's real effect, but expect merge conflicts when many
+  sources feed one file, and scan it for secrets.
 - **Synthetic load and traffic teeing** test code paths but not real state; teeing to a system
   with side effects (billing) is dangerous.
 

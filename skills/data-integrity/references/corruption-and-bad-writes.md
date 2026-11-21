@@ -13,9 +13,9 @@ PostgreSQL [data checksums](https://www.postgresql.org/docs/current/checksums.ht
 
 ## What agents typically get wrong
 
-- **Planning only for hardware loss.** The SRE book reviewed recovery efforts and found that
-  user-visible loss most often came from software bugs: deletions and broken references. The
-  hardest cases were slow corruption found weeks or months later.
+- **Planning only for hardware loss.** In Google's recovery history (SRE book), application code
+  did most of the damage users noticed, by deleting rows or breaking links between them, and
+  the worst of it was quiet damage that went unseen for weeks or months.
 - **Hard `DELETE` on the user path.** Once the row is gone, the only way back is a restore. That
   is slow, coarse, and loses every good write since the backup.
 - **No brake on bulk deletes.** A batch job or cleanup script with a bad filter removes half the
@@ -23,8 +23,8 @@ PostgreSQL [data checksums](https://www.postgresql.org/docs/current/checksums.ht
 - **Trusting that a store which reports success wrote the right thing.** Checksums catch flipped
   bits on disk, not a correct write of wrong data. Only invariants checked by something outside
   the write path catch that.
-- **Validators so strict they get turned off.** The SRE book warns that noisy checks are
-  disabled. Check the invariants whose violation would really hurt users.
+- **Validators so strict they get turned off.** A check that fails on every harmless change
+  soon gets switched off (SRE book). Keep it to the few invariants users would feel if broken.
 - **Restoring the whole database to fix a few rows.** That throws away every good write since the
   backup. Restore to a side copy and repair only what is wrong.
 - **Cleaning up before understanding.** Running a "fix" before the bug is found, or while the
@@ -36,9 +36,9 @@ PostgreSQL [data checksums](https://www.postgresql.org/docs/current/checksums.ht
 
 **Before it happens**
 
-1. **List the failure modes** by what caused the damage (a person, a program, the platform or a
-   whole site), how much it touched, and how fast it spread. The SRE book crosses these three.
-   Say which defence covers each combination.
+1. **List the failure modes** along three axes the SRE book combines: sudden or gradual, a few
+   records or many, and the origin (a person, a program, the platform, a whole site). Say which
+   defence covers each combination.
 2. **Soft-delete user-facing data.** Add a `deleted_at` column, read through a filter or view, and
    purge in a separate job after a recovery window. Windows of 15 to 60 days are common in the
    SRE book's account.
