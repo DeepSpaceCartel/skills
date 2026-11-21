@@ -5,7 +5,9 @@ covering public standards and conventions — release & documentation
 workflow, API design, data validation, eventing, application security,
 development environments, containers & Kubernetes, CI/CD, observability,
 infrastructure as code, BDD test specifications, core software design
-principles, and Agent Skills authoring itself. None of these are specific
+principles, production engineering (data safety, pipelines, capacity,
+architecture review, infrastructure patterns, operations, builds), and
+Agent Skills authoring itself. None of these are specific
 to any one codebase — they document public standards and well-established
 practice, and can be dropped into any project.
 
@@ -148,6 +150,21 @@ Time-tested, source-backed workflows for everyday engineering tasks.
 | Skill | What it covers |
 | --- | --- |
 | [`engineering-practices`](skills/engineering-practices/SKILL.md) | Time-tested workflows for everyday engineering tasks — testing, debugging, refactoring, database migrations, reliability, security, API evolution, performance, release engineering — each with what agents get wrong, a procedure and a checklist, grounded in canonical sources |
+
+### Production Engineering
+
+Designing, sizing, reviewing and operating production systems: data protection, pipelines, capacity, architecture review, infrastructure patterns, operations, and builds.
+
+| Skill | What it covers |
+| --- | --- |
+| [`architecture-review`](skills/architecture-review/SKILL.md) | Vendor-neutral architecture reviews — well-architected pillars with a Google/AWS/Azure crosswalk, failure-mode analysis per component and journey, production readiness reviews and launch checklists, findings with owners |
+| [`build-systems`](skills/build-systems/SKILL.md) | Fast, correct builds and tests — hermeticity and reproducibility, when to adopt Bazel or Buck2 (and the cheaper steps first), remote caching and execution over the Remote Execution API, test sharding and caching, polyglot monorepos with Python, Go and Rust |
+| [`data-integrity`](skills/data-integrity/SKILL.md) | Protecting stored data — RPO/RTO, backups and continuous WAL archiving, restore drills, where state lives, WAL and disk growth, corruption and bad writes, disaster recovery, safe deletion |
+| [`data-pipelines`](skills/data-pipelines/SKILL.md) | Running ingestion, crawler and ETL pipelines — freshness and per-field completeness SLIs, proving a read complete before acting on absence, our-side vs source failures, idempotent checkpointed stages, backfills and shadow runs, dead-letter queues and per-source rate limits |
+| [`infrastructure-patterns`](skills/infrastructure-patterns/SKILL.md) | Infrastructure pattern catalog — caching, scaling, messaging (outbox, CQRS, sagas, dead-letter queues) and infrastructure-level resilience (failover across zones, probes, disruption budgets, autoscaling, mesh retries and outlier ejection, rate limits, load shedding, static stability, cells), each in code and in infrastructure |
+| [`production-operations`](skills/production-operations/SKILL.md) | Running a production service — monitoring design, dead-man's switches and expiry checks, page vs ticket, on-call for small teams and agents, incident roles and state docs, runbooks and safe operator commands, toil, config rollout and canary analysis |
+| [`secure-reliable-systems`](skills/secure-reliable-systems/SKILL.md) | Where security and reliability meet (after Building Secure and Reliable Systems) — safe admin proxies and break-glass, credential rotation and expiry chains, compromise recovery and tamper-resistant audit logs, DoS defence, crawler fleets as good citizens |
+| [`system-design`](skills/system-design/SKILL.md) | Requirements to a concrete, sized design (NALSD) — back-of-the-envelope estimates, capacity planning with a limits inventory and runway dates, Kubernetes requests/limits and OOM kills, single points of failure, failure domains, leader election and distributed cron |
 
 ## License
 

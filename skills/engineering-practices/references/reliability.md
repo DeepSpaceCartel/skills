@@ -99,14 +99,14 @@ patterns, and Allspaw on blameless postmortems.
   rare and tested.
 - **SLIs and SLOs.** Use percentiles, not means. Keep the number of SLOs small and
   the internal SLO stricter than the external SLA.
-- **Symptom-based alerting on burn rate.** Google's starting values for a 99.9% SLO
-  over 30 days:
-
-| Severity | Long window | Short window | Burn rate | Budget consumed |
-|---|---|---|---|---|
-| Page | 1 h | 5 min | 14.4 | 2% |
-| Page | 6 h | 30 min | 6 | 5% |
-| Ticket | 3 d | 6 h | 1 | 10% |
+- **Symptom-based alerting on burn rate.** Derive each threshold from how much of the
+  budget you can afford to lose before someone acts:
+  `burn rate = budget share consumed × SLO period / long window`. For a 30-day (720 h)
+  period, losing 2% of the budget within 1 h gives 0.02 × 720 / 1 = **14.4**, and losing 5%
+  within 6 h gives 0.05 × 720 / 6 = **6**. Both page. Losing 10% over 3 days gives
+  0.10 × 30 / 3 = **1**, which makes a ticket. These are the Workbook's suggested starting
+  points (see Sources). Pair each long window with a short one at 1/12 of its length: 5 min for
+  1 h, 30 min for 6 h, 6 h for 3 days.
 
   Each rule fires only when both windows exceed the burn rate, for example
   `error_ratio_1h > 14.4 * 0.001 and error_ratio_5m > 14.4 * 0.001`, where 0.001 is
@@ -192,6 +192,13 @@ sleeping; a non-retryable error propagated immediately; and a spent deadline rai
 `debugging` (mitigate first during an incident, then find the cause),
 `performance` (latency percentiles), `release-engineering` (canaries and rollback),
 `database-migrations` (lock timeouts).
+
+This reference is the **code layer**: one call path inside a service. The same mechanisms in
+the platform (mesh and gateway timeouts and retries, outlier ejection, per-workload bulkheads,
+edge rate limits and load shedding, probes) are in
+[`infrastructure-patterns`](../../infrastructure-patterns/SKILL.md), whose "Reliability at two
+layers" table says which layer should own each one. Running the service (monitoring, on-call,
+incidents, runbooks) is [`production-operations`](../../production-operations/SKILL.md).
 
 ## Sources
 

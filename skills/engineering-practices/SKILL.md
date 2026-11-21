@@ -1,6 +1,6 @@
 ---
 name: engineering-practices
-description: Time-tested engineering practices for everyday delivery work - project-agnostic. Workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP and others). Use when writing or reviewing tests, choosing mocks vs fakes, or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy component incrementally; changing a database schema or backfilling data; adding timeouts, retries or idempotency, defining SLOs and alerts, or writing a postmortem; adding a dependency, handling a secret or leaked credential, or threat-modeling a feature; changing a published API, event or schema without breaking consumers; investigating slowness, benchmarking, or deciding whether to add a cache; shipping a risky change with feature flags, canaries or a rollback plan. Complements core-principles (design heuristics); not for authoring CI workflows, version numbers or changelogs (see github-actions, semver, keepachangelog).
+description: Time-tested engineering practices for everyday delivery work - project-agnostic. Workflows grounded in canonical sources (Fowler, Beck, Google SRE, DORA, OWASP). Use when writing or reviewing tests, choosing mocks vs fakes or chasing flaky tests; diagnosing a bug, crash or intermittent failure; restructuring code or replacing a legacy part incrementally; changing a database schema or backfilling data; adding timeouts, retries or idempotency in code, defining SLOs and alerts, or writing a postmortem; adding a dependency, handling a secret or leaked credential, or threat-modeling a feature; changing a published API, event or schema without breaking consumers; investigating slowness, benchmarking, or deciding whether to add a cache; shipping a risky change with feature flags, canaries or a rollback plan. Complements core-principles; not for CI workflows, versions or changelogs (see github-actions, semver, keepachangelog), or platform patterns and operations (see infrastructure-patterns, production-operations).
 ---
 
 # Engineering Practices
@@ -55,4 +55,10 @@ These recur across the references (a synthesis, not a separate source):
 ## Related
 
 - [`core-principles`](../core-principles/SKILL.md) — design heuristics and how they conflict.
+- The production-engineering skills cover the platform and system level:
+  [`infrastructure-patterns`](../infrastructure-patterns/SKILL.md) (the same reliability mechanisms in
+  the mesh, gateway and cluster), [`production-operations`](../production-operations/SKILL.md)
+  (monitoring, on-call, incidents), [`data-integrity`](../data-integrity/SKILL.md),
+  [`data-pipelines`](../data-pipelines/SKILL.md), [`system-design`](../system-design/SKILL.md) and
+  [`architecture-review`](../architecture-review/SKILL.md).
 - [`github-actions`](../github-actions/SKILL.md), [`semver`](../semver/SKILL.md), [`keepachangelog`](../keepachangelog/SKILL.md), [`owasp-asvs`](../owasp-asvs/SKILL.md) — the mechanics and requirements these practices plug into.
