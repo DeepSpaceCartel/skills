@@ -48,14 +48,14 @@ or a configuration service, read at startup or watched.
 | Concern | Baseline | Where it's specified |
 |---|---|---|
 | Logs | Structured, with trace and span IDs on every record, sent to one aggregator | [`structured-logging`](../../structured-logging/SKILL.md) |
-| Metrics | Request rate, errors and latency per endpoint and per dependency; saturation | [`production-operations`](../../production-operations/SKILL.md) |
+| Metrics | Request rate, errors and latency per endpoint and per dependency; saturation | [`production-operations` monitoring-and-alerting](../../production-operations/references/monitoring-and-alerting.md) |
 | Traces | Context propagated on every inbound and outbound call and message | [`structured-logging` correlation](../../structured-logging/references/correlation.md) |
-| Errors | Unhandled exceptions reported to a tracker with context, deduplicated | [`production-operations`](../../production-operations/SKILL.md) |
+| Errors | Unhandled exceptions reported to an error tracker (Sentry, GlitchTip or similar) with release, request and trace IDs, grouped so one bug is one issue | This row |
 | Health | Liveness, readiness and startup endpoints with the right depth | [`infrastructure-patterns` health-checks-and-probes](../../infrastructure-patterns/references/health-checks-and-probes.md) |
 | Outbound calls | Timeouts, bounded retries with jitter, breakers | [`engineering-practices` reliability](../../engineering-practices/references/reliability.md) |
 | Shutdown | Drain on SIGTERM, finish in-flight work within the grace period | [`infrastructure-patterns` disruption-budgets-and-safe-rollouts](../../infrastructure-patterns/references/disruption-budgets-and-safe-rollouts.md) |
-| Deploy record | Each deploy and config change logged and shown on dashboards | [`production-operations`](../../production-operations/SKILL.md) |
-| Audit | Security-relevant user actions recorded durably | [`secure-reliable-systems`](../../secure-reliable-systems/SKILL.md) |
+| Deploy record | Each deploy and config change logged and shown on dashboards | [`production-operations` monitoring-and-alerting](../../production-operations/references/monitoring-and-alerting.md), [config-and-canary-changes](../../production-operations/references/config-and-canary-changes.md) |
+| Audit | Security-relevant user actions recorded durably, off the host | [`secure-reliable-systems` compromise-recovery-and-forensics](../../secure-reliable-systems/references/compromise-recovery-and-forensics.md) |
 | Packaging | One image per service, non-root, pinned base | [`container-images`](../../container-images/SKILL.md), [`helm-charts`](../../helm-charts/SKILL.md) |
 | Tests | Component tests with test doubles; contract tests with each consumer and provider | [`engineering-practices` testing](../../engineering-practices/references/testing.md) |
 

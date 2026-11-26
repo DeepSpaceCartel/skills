@@ -94,5 +94,5 @@ microservices.io: [Microservices ate my application](https://microservices.io/po
 [Loose design-time coupling](https://microservices.io/post/architecture/2024/11/09/loose-coupling-enabling-the-winning-org.html),
 [Microservices rules: what good looks like](https://microservices.io/post/architecture/2024/07/10/microservices-rules-what-good-looks-like.html).
 Sam Newman, *Building Microservices* (2nd ed.). DORA,
-[the four key metrics](https://dora.dev/guides/dora-metrics-four-keys/). Michael Nygard, "The
-Entity Service Antipattern". The catalog and the co-change script are this skill's own.
+[the four key metrics](https://dora.dev/guides/dora-metrics-four-keys/). Michael Nygard,
+[The Entity Service Antipattern](https://www.michaelnygard.com/blog/2017/12/the-entity-service-antipattern/). The catalog and the co-change script are this skill's own.

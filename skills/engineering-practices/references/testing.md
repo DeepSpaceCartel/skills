@@ -219,5 +219,7 @@ Google Testing Blog,
 [Where do our flaky tests come from?](https://testing.googleblog.com/2017/04/where-do-our-flaky-tests-come-from.html);
 [Hypothesis docs](https://hypothesis.readthedocs.io/);
 Feathers, [Characterization Testing](https://michaelfeathers.silvrback.com/characterization-testing);
-Dodds, [Write tests](https://kentcdodds.com/blog/write-tests). Specific flaky-test
+Dodds, [Write tests](https://kentcdodds.com/blog/write-tests);
+[Pact docs](https://docs.pact.io/) and [can-i-deploy](https://docs.pact.io/pact_broker/can_i_deploy);
+[Spring Cloud Contract](https://spring.io/projects/spring-cloud-contract). Specific flaky-test
 statistics are omitted because they could not be checked against the primary source.

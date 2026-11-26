@@ -13,57 +13,59 @@ whenever requirements change enough to move an operation's centre of gravity.
 
 ## Steps
 
-1. **List the system operations.** From user stories, scenarios and non-functional
-   requirements, write each operation the system must perform, technology-free: commands
-   (`placeOrder`, `cancelOrder`) and queries (`findOrderHistory`). Note what triggers each (a
-   request, a message, a schedule) and its availability and latency needs.
-2. **Find the subdomains.** Group the data and rules the operations act on into subdomains or
-   bounded contexts (see [boundaries](boundaries.md)). Each is something a small team could own.
-3. **Rank the operations.** Most important first: business-critical, technically risky (high
-   throughput, tight latency, large data, complex rules), or where the business needs to
-   experiment fast. The top of the list shapes the architecture; the tail fits around it.
-4. **Assign, operation by operation.** Walk the ranked list. For each operation, put its
-   unassigned subdomains into an existing or a new service. If all its subdomains end up in one
-   service, the operation is **local** and needs no collaboration pattern. If not, it is
-   **distributed**: choose how it works ([collaboration](collaboration.md)) and add the APIs,
+The process is adapted from Richardson's Assemblage, with attribution in Sources. It is
+condensed here and changed in places.
+
+1. **Write down what the system does,** as operations rather than entities. Use commands
+   (`placeOrder`, `cancelOrder`) and queries (`findOrderHistory`), each with its trigger
+   (request, message, schedule) and its availability and latency needs. Leave technology out.
+2. **Group the rules and data those operations touch** into subdomains or bounded contexts
+   ([boundaries](boundaries.md)).
+3. **Order the operations by what a wrong design would cost.** Put first the ones where an
+   outage loses money, where latency or volume is extreme, or where the design would be hardest
+   to change later. These set the shape. The rest fit around them.
+4. **Place each operation in turn.** Put its subdomains into an existing service or a new one.
+   An operation whose subdomains all land in one service is local and needs nothing more. A
+   distributed one gets a collaboration design ([collaboration](collaboration.md)): the APIs,
    events and handlers it needs.
-5. **Weigh each choice** against the two groups of forces below. Prefer the candidate that
-   satisfies the forces that matter for *this* operation.
-6. **Evaluate the whole.** Choices made one operation at a time can add up badly. Look for the
-   smells below.
-7. **Refactor** at the right level: change an operation's collaboration pattern, move a
-   subdomain to another service, split a subdomain, or relax an operation's requirement (accept
-   eventual consistency, make it asynchronous). Repeat from step 4 for affected operations.
+5. **Argue each placement** with the questions below, for *this* operation.
+6. **Step back and look at the whole,** using the smells below. Choices that were sensible one
+   operation at a time can add up badly.
+7. **Adjust and repeat** for the operations that are affected. The levers, cheapest first:
+   - relax a requirement (accept staleness, make the operation asynchronous)
+   - change the collaboration design
+   - move a subdomain to another service
+   - split a subdomain
+   - merge two services
 8. **Record** each service on a service sheet and each significant decision as an ADR.
 
-## Forces
+## Questions that decide a split
 
-Two groups pull in opposite directions. Richardson calls them *dark energy* (pushes toward
-more, smaller services) and *dark matter* (pulls toward fewer). The framing is his; the
-wording here is this skill's.
+Every split trades something for something else. Ask the four questions below for the operation
+in front of you. Richardson frames the two sides as *dark energy* (forces that push toward more,
+smaller services) and *dark matter* (forces that pull toward fewer). Fowler and Newman add the
+operating cost and the security case. The grouping here is this skill's own.
 
-| Reasons to split | Reasons to keep together |
-|---|---|
-| Each part is simpler to understand on its own | The operation stays a local call instead of a distributed interaction |
-| Teams can develop, test and deploy without each other | Fewer round trips and less data moved per operation |
-| Each pipeline stays fast | One ACID transaction instead of a saga and eventual consistency |
-| A part needs its own technology or upgrade schedule | The operation doesn't depend at run time on other services being up |
-| A part needs different scaling, availability or security | Changes don't ripple across services that must release in step |
+| Question | Argues for splitting | Argues for keeping together |
+|---|---|---|
+| **Who changes it, and how often?** | Different teams, or very different change rates; one team blocked behind another's release; a build too slow for fast feedback | Most changes touch both sides; a shared model; one team owns both anyway |
+| **What does it need at run time?** | Different load, availability, latency or failure isolation; one part must stay up when the other is down | Each request would wait on the other side; many round trips or large transfers per operation |
+| **What does the operation need from the data?** | The parts' invariants are independent; eventual consistency is acceptable to the business | One invariant spans both; the business needs the answer to be right *now* (ACID) |
+| **What does it cost to build, secure and run?** | A part needs its own stack, upgrade schedule, compliance scope or blast radius (card data, PII, admin) | Another pipeline, dashboard, on-call surface and contract test suite per service; harder end-to-end testing and debugging |
 
-No grouping satisfies all ten. The design question is which ones matter for each operation:
-a checkout path weighs availability and latency, a back-office report weighs simplicity, a
-team bottleneck weighs autonomy.
+No design answers all four well. A checkout path weighs run-time needs. A back-office report
+weighs build and run cost. A team bottleneck weighs who changes it.
 
 ## Smells to look for in step 6
 
-- **A service shared by many teams:** autonomy lost; split along team subdomains.
-- **Services that would change together** for most planned features: design-time coupling;
-  move the boundary.
-- **An operation spanning many services**, especially synchronously: low availability, high
-  latency; merge, replicate, or go asynchronous.
-- **A service with no operations of its own,** only data others read: an entity service.
-- **A saga where a local transaction would do,** because two subdomains with one invariant were
-  split.
+- **Several teams in one service:** they queue behind each other. Split along their subdomains.
+- **Services that most planned features would change together:** move the boundary.
+- **A user-facing operation that waits on several services:** merge, replicate, or go
+  asynchronous.
+- **A service with no operations of its own,** only data that others interpret: an entity
+  service.
+- **A saga protecting one invariant** that was split across two services: put it back in one.
+- **A service nobody can name a reason for:** no question in the table above argues for it.
 
 ## The service sheet
 
@@ -108,8 +110,7 @@ The "Calls synchronously" line is the one to watch: it is the runtime coupling b
 
 1. Is there a list of system operations, with triggers and non-functional needs?
 2. Which operations are distributed, and is each one's collaboration pattern written down?
-3. For each split, which reason to split justifies it, and which reasons to keep together were
-   traded away?
+3. For each split, which of the four questions argues for it, and what was traded away?
 4. Was the whole evaluated for the smells above after the per-operation pass?
 5. Does each service have a sheet listing its synchronous calls, events, replicas and owned data?
 6. Are the decisions recorded as ADRs?
@@ -122,7 +123,8 @@ The "Calls synchronously" line is the one to watch: it is the runtime coupling b
 
 ## Sources
 
-microservices.io: [Assemblage, an architecture definition process](https://microservices.io/post/architecture/2023/02/09/assemblage-architecture-definition-process.html),
+The steps are adapted from Richardson's Assemblage; the questions table regroups his forces
+together with Fowler's and Newman's. microservices.io: [Assemblage, an architecture definition process](https://microservices.io/post/architecture/2023/02/09/assemblage-architecture-definition-process.html),
 [Assemblage step 3: defining a service architecture](https://microservices.io/post/architecture/2023/10/17/assemblage-step-3-defining-a-service-architecture.html),
 [Dark energy and dark matter forces](https://microservices.io/post/architecture/2023/03/26/dark-energy-dark-matter-force-descriptions.html),
 [Microservices ate my application](https://microservices.io/post/architecture/2025/02/03/microservices-ate-my-application.html)

@@ -106,7 +106,7 @@ command: it adds the network without removing the coupling.
 |---|---|
 | [style-choice](references/style-choice.md) | Monolith, modular monolith, microservices; prerequisites; the microservice premium; wrong reasons |
 | [boundaries](references/boundaries.md) | Subdomains and bounded contexts, business capabilities, team ownership and cognitive load, Conway's law, sizing, self-contained services |
-| [design-process](references/design-process.md) | From system operations to services; forces for splitting and for keeping together; the service sheet; re-evaluating |
+| [design-process](references/design-process.md) | From system operations to services; the questions that decide a split; the service sheet; re-evaluating |
 | [collaboration](references/collaboration.md) | Sync vs async; queries (API composition, CQRS view); commands (saga, command-side replica, merge); availability and latency arithmetic |
 | [data-ownership](references/data-ownership.md) | Database per service, isolation levels, grants, shared database, reporting |
 | [edge-and-identity](references/edge-and-identity.md) | API gateway, backends for frontends, partial responses, access tokens, discovery, UI composition |

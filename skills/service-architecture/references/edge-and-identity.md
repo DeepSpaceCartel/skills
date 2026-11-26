@@ -71,10 +71,11 @@ Clients of a service need its instances' current addresses. Two approaches:
 | Examples | Kubernetes Services and DNS, cloud load balancers, a service mesh | Consul or etcd clients, older Eureka/Ribbon setups |
 | Trade-off | Simple clients, one extra hop, platform-provided | No extra hop; a discovery library per language |
 
-On Kubernetes or a managed platform, use the platform's discovery and don't add a registry.
-Registration happens automatically (the platform registers instances: third-party
-registration) instead of each instance registering itself. See
-[`kubernetes`](../../kubernetes/SKILL.md) and
+On Kubernetes or a managed platform, use the platform's discovery and don't add a registry. A
+Kubernetes Service gives each service a stable DNS name (`orders.shop.svc.cluster.local`, or
+just `orders` from the same namespace), and the platform adds and removes ready pods behind it.
+That is *third-party registration*: the platform registers instances, instead of each instance
+registering itself. Balancing across those pods is in
 [`infrastructure-patterns` load-balancing](../../infrastructure-patterns/references/load-balancing.md).
 
 ## UI composition

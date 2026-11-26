@@ -99,5 +99,5 @@ microservices.io: [Decompose by subdomain](https://microservices.io/patterns/dec
 [Self-contained service](https://microservices.io/patterns/decomposition/self-contained-service.html).
 Martin Fowler, [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html),
 [Conway's Law](https://martinfowler.com/bliki/ConwaysLaw.html). Eric Evans, *Domain-Driven
-Design*. Skelton and Pais, *Team Topologies* (team cognitive load). Michael Nygard, "The Entity
-Service Antipattern". The heuristics and smell table are this skill's synthesis.
+Design*. Skelton and Pais, *Team Topologies* (team cognitive load). Michael Nygard,
+[The Entity Service Antipattern](https://www.michaelnygard.com/blog/2017/12/the-entity-service-antipattern/). The heuristics and smell table are this skill's synthesis.

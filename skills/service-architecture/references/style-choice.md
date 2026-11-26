@@ -20,25 +20,24 @@ microservice can be a ball of mud inside. Whatever the style, put domains at the
 deployable's structure (`ordering/`, `billing/`, each with its own layers), not technical
 layers (`controllers/`, `services/`, `repositories/`) that every feature cuts across.
 
-## When to split: the forces
+## When to split
 
-Split a part out only when at least one of these is real and the modular monolith can't
-satisfy it:
+Split a part out only when the modular monolith demonstrably can't meet a need. The needs that
+justify it, grouped by where they come from:
 
-1. **Team autonomy.** Several teams block each other on one codebase, review queue or
-   release.
-2. **Pipeline speed.** Build and test time has grown past what keeps feedback fast, and
-   physical design (build modules, test selection) is not enough.
-3. **Different characteristics.** One part needs different scaling, availability, latency,
-   security isolation or compliance scope (card data, PII).
-4. **Different technology.** One part needs a different language, runtime or datastore, or
-   must upgrade its stack on its own schedule.
-5. **Simpler components.** One part is large and complex enough that its own deployable is
-   easier to understand than a module.
+- **People:** teams block each other on one codebase, review queue or release train, and the
+  build and test cycle has grown past fast feedback even with build modules and test selection.
+- **Run time:** a part has a different load, availability or latency target, or must keep
+  running when the rest fails.
+- **Risk and compliance:** a part handles data or privileges that should sit in a smaller blast
+  radius and audit scope (card data, PII, admin functions). Fowler counts this among the real
+  benefits.
+- **Technology:** a part needs a different language, runtime or datastore, or must upgrade on
+  its own schedule.
 
-And keep things together when these dominate (see [design-process](design-process.md)):
-operations would become distributed, chatty or eventually consistent, or runtime and
-design-time coupling would rise.
+Weigh these against what a split costs every time: operations that become distributed and
+eventually consistent, calls that can fail, and one more thing to deploy, monitor, secure and
+test. The full set of questions is in [design-process](design-process.md).
 
 ## Prerequisites
 
@@ -89,12 +88,12 @@ saved searches, send emails. The obvious split is four services. But one team ow
 domain is still moving, and matching needs jobs and searches in one query. Recommendation: one
 deployable with four domain modules (`ingest`, `catalog`, `matching`, `notify`), each owning its
 tables. The crawler fleet runs as a separate *workload* of the same codebase because it has a
-different scaling and failure profile (force 3). Revisit when a second team arrives or a module's
+different scaling and failure profile (a run-time reason to split). Revisit when a second team arrives or a module's
 pipeline time dominates.
 
 ## Review checklist
 
-1. Which named force justifies each separately deployed service?
+1. Which named reason to split justifies each separately deployed service?
 2. Could a modular monolith meet the same need with less cost?
 3. Are CD, team ownership, platform and on-call in place for the number of services proposed?
 4. Is each deployable's top-level structure by domain, not by technical layer?
@@ -119,4 +118,4 @@ microservices.io: [Monolithic architecture](https://microservices.io/patterns/mo
 Martin Fowler, [Monolith First](https://martinfowler.com/bliki/MonolithFirst.html),
 [Microservice Premium](https://martinfowler.com/bliki/MicroservicePremium.html),
 [Microservice Trade-Offs](https://martinfowler.com/articles/microservice-trade-offs.html).
-Skelton and Pais, *Team Topologies*. The forces list here is this skill's grouping.
+Skelton and Pais, *Team Topologies*. The grouping of reasons to split is this skill's own.
