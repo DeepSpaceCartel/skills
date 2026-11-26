@@ -142,6 +142,8 @@ of a scan. Either way the dashboard should read `job_counts`, not aggregate `job
 
 ## Related
 
+[`service-architecture` collaboration](../../service-architecture/references/collaboration.md)
+(a view vs API composition for cross-service queries),
 [transactional-outbox](transactional-outbox.md), [idempotent-consumer](idempotent-consumer.md),
 [event-sourcing](event-sourcing.md), [publish-subscribe](publish-subscribe.md),
 [bulkheads-and-isolation](bulkheads-and-isolation.md),

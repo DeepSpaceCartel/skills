@@ -5,7 +5,7 @@ covering public standards and conventions — release & documentation
 workflow, API design, data validation, eventing, application security,
 development environments, containers & Kubernetes, CI/CD, observability,
 infrastructure as code, BDD test specifications, core software design
-principles, production engineering (data safety, pipelines, capacity,
+principles and service architecture, production engineering (data safety, pipelines, capacity,
 architecture review, infrastructure patterns, operations, builds), and
 Agent Skills authoring itself. None of these are specific
 to any one codebase — they document public standards and well-established
@@ -138,11 +138,13 @@ Writing behavior-driven test specifications and acceptance criteria.
 
 ### Software Design Principles
 
-Core, language-agnostic design principles for writing and reviewing code.
+Core, language-agnostic design principles for writing and reviewing code, and the
+same ideas at service scale.
 
 | Skill | What it covers |
 | --- | --- |
 | [`core-principles`](skills/core-principles/SKILL.md) | Sixteen design principles — KISS, DRY, YAGNI, Separation of Concerns, SRP, High Cohesion, Low Coupling, Composition over Inheritance, Information Hiding, Encapsulation, Program to an Interface, Fail Fast, Explicitness, Least Surprise, Least Privilege, Defensive Programming — with a symptom-to-principle lookup, conflict tie-breakers, and a reference per principle |
+| [`service-architecture`](skills/service-architecture/SKILL.md) | Choosing and evolving a service architecture — monolith vs modular monolith vs microservices, boundaries by subdomain and team, per-operation collaboration (API composition, CQRS, saga, command-side replica), database per service, API gateway and BFF, strangler migration, distributed-monolith smells ([microservices.io](https://microservices.io/patterns/)) |
 
 ### Engineering Practices
 

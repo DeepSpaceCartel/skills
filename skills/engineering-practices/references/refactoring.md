@@ -79,7 +79,8 @@ Feathers' *Working Effectively with Legacy Code*, and the Mikado Method.
 - **Strangler Fig.** Replace a legacy system gradually: route one piece at a
   time to new code. It needs transitional architecture and organizational
   change, or "new systems will end up in a similar mess". Skip it for small
-  modules.
+  modules. The service-scale version, with data and anti-corruption layers, is
+  in `service-architecture` (migration).
 - **Mikado Method.** When a goal is blocked by a tangle of dependencies: try
   the change naively, record what breaks as prerequisites on a graph, revert
   to green, and work leaf-first.

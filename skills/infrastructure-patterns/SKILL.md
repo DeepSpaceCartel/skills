@@ -1,6 +1,6 @@
 ---
 name: infrastructure-patterns
-description: Infrastructure pattern catalog - project-agnostic, Kubernetes, self-hosted or any cloud. Caching (cache-aside, read-through, CDN); scaling (load balancing, read replicas, sharding, materialized views); messaging (pub/sub, work queues, competing consumers, transactional outbox, idempotent consumer, CQRS, event sourcing, saga, dead-letter queue); resilience (redundancy and failover across zones, health checks and liveness, readiness and startup probes, disruption budgets, requests, limits and autoscaling, mesh and gateway timeouts, retries, outlier ejection, rate limits, load shedding, static stability, cells and shuffle sharding). Use when asked which pattern fits, whether to add a queue, cache or replica, or how to survive a node or zone failure, or on a dual write, a read/write imbalance or a slow consumer. Not for retries or timeouts in code (see engineering-practices), sizing (see system-design), reviewing a whole architecture (see architecture-review), or pipeline data correctness (see data-pipelines).
+description: Infrastructure pattern catalog - project-agnostic, any platform. Caching (cache-aside, read-through, CDN); scaling (load balancing, read replicas, sharding, materialized views); messaging (pub/sub, work queues, competing consumers, transactional outbox, idempotent consumer, CQRS, event sourcing, saga, dead-letter queue); resilience (redundancy and failover across zones, health checks and liveness, readiness, startup probes, disruption budgets, requests, limits and autoscaling, mesh and gateway timeouts, retries, outlier ejection, rate limits, load shedding, static stability, cells and shuffle sharding). Use when asked which pattern fits, whether to add a queue, cache or replica, or how to survive a node or zone failure, or on a dual write, read/write imbalance or slow consumer. Not for retries or timeouts in code (see engineering-practices), sizing (see system-design), architecture reviews (see architecture-review), pipeline correctness (see data-pipelines), or service boundaries (see service-architecture).
 ---
 
 # Infrastructure Patterns
@@ -165,6 +165,7 @@ work continue after the caller gave up.
 
 ## Related
 
+- [`service-architecture`](../service-architecture/SKILL.md) — service boundaries, and which collaboration pattern each cross-service operation should use.
 - [`engineering-practices`](../engineering-practices/SKILL.md) — the code layer: retries, timeouts, breakers, idempotency, SLOs; release engineering.
 - [`system-design`](../system-design/SKILL.md) — sizing, capacity planning, failure domains.
 - [`architecture-review`](../architecture-review/SKILL.md) — reviewing a whole design or a launch.

@@ -89,6 +89,20 @@ and Feathers on characterization tests.
   Use selectively on critical logic; whole-repo runs are usually too slow.
 - **Contract tests (consumer-driven)** between independently deployed services.
   They replace much end-to-end testing.
+  - The *consumer* team writes down what it needs from the provider: the
+    requests it sends and the response fields it reads, not the provider's whole API.
+    Those expectations run against the consumer's code with a stub provider, and
+    are published (Pact with a broker, Spring Cloud Contract, or plain recorded
+    examples in the provider's repo).
+  - The *provider* runs every consumer's expectations in its own pipeline against
+    the real service with its dependencies doubled. A failure names the consumer it
+    would break. Gate deploys on it (Pact's `can-i-deploy`, or the equivalent check).
+  - Pair them with **component tests**: the whole service in-process or in a
+    container, with its database real and its collaborator services stubbed.
+  - Contract tests prove the two sides agree on shape and the cases written
+    down. They don't prove the provider's behaviour is right, or that the
+    deployed system is wired correctly. Keep a few end-to-end smoke tests for that.
+    Service boundaries themselves are in `service-architecture`.
 - **Flaky tests:** identify, triage, fix the cause. Common causes are timing,
   concurrency, shared state and clocks. Inject a fake clock instead of sleeping;
   quarantine while you fix. Don't blanket-retry.
@@ -205,5 +219,7 @@ Google Testing Blog,
 [Where do our flaky tests come from?](https://testing.googleblog.com/2017/04/where-do-our-flaky-tests-come-from.html);
 [Hypothesis docs](https://hypothesis.readthedocs.io/);
 Feathers, [Characterization Testing](https://michaelfeathers.silvrback.com/characterization-testing);
-Dodds, [Write tests](https://kentcdodds.com/blog/write-tests). Specific flaky-test
+Dodds, [Write tests](https://kentcdodds.com/blog/write-tests);
+[Pact docs](https://docs.pact.io/) and [can-i-deploy](https://docs.pact.io/pact_broker/can_i_deploy);
+[Spring Cloud Contract](https://spring.io/projects/spring-cloud-contract). Specific flaky-test
 statistics are omitted because they could not be checked against the primary source.

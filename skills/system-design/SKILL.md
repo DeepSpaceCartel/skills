@@ -1,6 +1,6 @@
 ---
 name: system-design
-description: Turning requirements into a concrete, sized design (NALSD) - project-agnostic. Covers requirements (SLOs, load shape, growth, data, budget); back-of-the-envelope estimates of QPS, peak factors, storage growth, bandwidth, IOPS, memory, connections and Little's law; capacity planning (N+1/N+2 headroom, a limits inventory (quotas, file descriptors, DB connections, shared memory caps), Kubernetes requests, limits and OOM kills, autoscaler ceilings, runway dates); single points of failure, failure domains, overload, load balancing, leader election and distributed cron. Use when designing a new service or a move (to Kubernetes, SQLite to Postgres, one node to many), when asked how many nodes, how much storage or memory, or will it scale, or before buying capacity. Not for reviewing an existing design or a launch (see architecture-review), choosing a cache, queue or replica pattern (see infrastructure-patterns), tuning slow code (see engineering-practices), or backups and volume safety (see data-integrity).
+description: Turning requirements into a concrete, sized design (NALSD) - project-agnostic. Covers requirements (SLOs, load shape, growth, data, budget); back-of-envelope estimates of QPS, peak factors, storage growth, bandwidth, IOPS, memory, connections and Little's law; capacity planning (N+1/N+2 headroom, a limits inventory (quotas, file descriptors, DB connections, shm caps), Kubernetes requests, limits and OOM kills, autoscaler ceilings, runway dates); single points of failure, failure domains, overload, load balancing, leader election and distributed cron. Use when designing a new service or a move (to Kubernetes, SQLite to Postgres, one node to many), when asked how many nodes, how much storage or memory, or will it scale, or before buying capacity. Not for service boundaries (see service-architecture), design or launch reviews (see architecture-review), cache, queue or replica patterns (see infrastructure-patterns), tuning slow code (see engineering-practices), or backups and volume safety (see data-integrity).
 ---
 
 # System Design
@@ -104,6 +104,8 @@ A synthesis across the references:
 - [`data-pipelines`](../data-pipelines/SKILL.md): pipeline SLOs, completeness, per-source limits,
   backlogs.
 - [`core-principles`](../core-principles/SKILL.md): KISS and YAGNI against over-design.
+- [`service-architecture`](../service-architecture/SKILL.md): how many services, where the
+  boundaries go, and how they collaborate, before sizing them.
 - [`adr`](../adr/SKILL.md): recording the chosen design and the rejected iterations.
 - [`helm-charts`](../helm-charts/SKILL.md): where requests, limits and replica counts are set.
 - [`architecture-review`](../architecture-review/SKILL.md): reviewing an existing design or a launch.

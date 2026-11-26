@@ -98,3 +98,4 @@ restructured.
 - `information-hiding` — the cause: hiding likely-to-change decisions is what makes coupling low.
 - `program-to-an-interface` — one tool for loosening coupling, not free.
 - `dry` and `high-cohesion` — the two principles it most often trades off against.
+- `service-architecture` (separate skill) — the same idea between services: design-time and runtime coupling, measured by co-change.

@@ -155,6 +155,8 @@ safe to run twice.
 
 ## Related
 
+[`service-architecture` collaboration](../../service-architecture/references/collaboration.md)
+(saga, command-side replica, or moving the boundary),
 [transactional-outbox](transactional-outbox.md), [idempotent-consumer](idempotent-consumer.md),
 [dead-letter-queues](dead-letter-queues.md), [event-sourcing](event-sourcing.md),
 [`data-pipelines` idempotent-stages](../../data-pipelines/references/idempotent-stages.md)
