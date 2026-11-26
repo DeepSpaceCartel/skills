@@ -104,6 +104,8 @@ A synthesis across the references:
 - [`data-pipelines`](../data-pipelines/SKILL.md): pipeline SLOs, completeness, per-source limits,
   backlogs.
 - [`core-principles`](../core-principles/SKILL.md): KISS and YAGNI against over-design.
+- [`service-architecture`](../service-architecture/SKILL.md): how many services, where the
+  boundaries go, and how they collaborate, before sizing them.
 - [`adr`](../adr/SKILL.md): recording the chosen design and the rejected iterations.
 - [`helm-charts`](../helm-charts/SKILL.md): where requests, limits and replica counts are set.
 - [`architecture-review`](../architecture-review/SKILL.md): reviewing an existing design or a launch.

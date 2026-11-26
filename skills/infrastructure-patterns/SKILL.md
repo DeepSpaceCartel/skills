@@ -165,6 +165,7 @@ work continue after the caller gave up.
 
 ## Related
 
+- [`service-architecture`](../service-architecture/SKILL.md) — service boundaries, and which collaboration pattern each cross-service operation should use.
 - [`engineering-practices`](../engineering-practices/SKILL.md) — the code layer: retries, timeouts, breakers, idempotency, SLOs; release engineering.
 - [`system-design`](../system-design/SKILL.md) — sizing, capacity planning, failure domains.
 - [`architecture-review`](../architecture-review/SKILL.md) — reviewing a whole design or a launch.

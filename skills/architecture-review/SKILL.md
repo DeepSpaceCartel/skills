@@ -118,6 +118,7 @@ A synthesis across the references:
 ## Related
 
 - [`system-design`](../system-design/SKILL.md): designing and sizing; failure domains and capacity in depth.
+- [`service-architecture`](../service-architecture/SKILL.md): service boundaries, data ownership, cross-service collaboration, distributed-monolith smells.
 - [`data-integrity`](../data-integrity/SKILL.md): state placement, backups, restores, DR, credential recovery.
 - [`data-pipelines`](../data-pipelines/SKILL.md): pipeline SLOs, completeness, per-source isolation.
 - [`engineering-practices`](../engineering-practices/SKILL.md): reliability, release-engineering, security-practices.
